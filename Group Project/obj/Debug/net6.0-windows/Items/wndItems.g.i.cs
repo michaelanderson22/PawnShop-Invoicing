@@ -53,7 +53,7 @@ namespace Group_Project {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Group Project;component/items/wnditems.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Group Project;V1.0.0.0;component/items/wnditems.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Items\wndItems.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
