@@ -8,6 +8,6 @@ namespace Group_Project
 {
     class clsItemsLogic
     {
-
+        // Test comment
     }
 }
