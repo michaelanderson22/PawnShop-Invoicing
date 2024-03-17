@@ -22,7 +22,7 @@ namespace Group_Project
         /// </summary>
 		public clsDataAccess()
         {
-            sConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data source= " + Directory.GetCurrentDirectory() + "\\GroupProject.mdb";
+            sConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data source= " + Directory.GetCurrentDirectory() + "\\Invoice.mdb";
         }
 
         /// <summary>
