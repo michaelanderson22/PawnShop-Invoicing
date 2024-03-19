@@ -43,20 +43,21 @@ namespace Group_Project
         {
             wndSearch SearchWindow = new wndSearch();
 
-            //Use ShowDialog to open the search window and get the search result
-            bool? result = SearchWindow.ShowDialog();
+            // Use ShowDialog to open the search window and get the search result
+            // Will uncomment when search window SelectedInvoice is implemented.
+            /*bool? result = SearchWindow.ShowDialog();
 
             if (result == true) // If the user closes the search window with a valid selection
             {
                 // Retrieve selected invoice information from the search window
                 int selectedInvoiceNumber = SearchWindow.SelectedInvoice;
-            }
+            }*/
         }
 
 
 
         // Invoice form Methods
-        
+
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
 
