@@ -20,5 +20,70 @@ namespace Group_Project
         {
             InitializeComponent();
         }
+
+        // Menu Item Methods
+
+        /// <summary>
+        /// Opens the item table window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UpdateItemTable_Click(object sender, RoutedEventArgs e)
+        {
+            wndItems ItemsWindow = new wndItems();
+            ItemsWindow.Show();
+        }
+
+        /// <summary>
+        /// Opens the search window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            wndSearch SearchWindow = new wndSearch();
+        }
+
+
+
+        // Invoice form Methods
+        
+        private void AddItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ItemComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DeleteItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveInvoice_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
+        // Invoice List Methods
+
+        private void InvoiceDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        private void AddInvoice_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditInvoice_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
