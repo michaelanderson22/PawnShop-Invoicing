@@ -43,7 +43,7 @@ namespace Group_Project
                 bool listUpdated = ItemsWindow.listUpdated;
                 if (listUpdated == true)
                 {
-                    // Update the itemComboBox
+                    // Update the itemComboBox, may have to change this implementation later on.
                     itemComboBox.Items.Clear();
                     foreach (string item in ItemsWindow.itemList)
                     {
