@@ -12,15 +12,15 @@ namespace Group_Project
         /// <summary>
         /// Stores the item code
         /// </summary>
-        public int itemCode { get; set; }
+        public string itemCode { get; set; }
         /// <summary>
         /// Stores the item description
         /// </summary>
-        public int itemDesc { get; set; }
+        public string itemDesc { get; set; }
         /// <summary>
         /// Stores the item cost
         /// </summary>
-        public int itemCost { get; set; }
+        public decimal itemCost { get; set; }
 
     }
 }
