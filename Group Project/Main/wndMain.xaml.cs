@@ -35,7 +35,7 @@ namespace Group_Project
 
             // Use ShowDialog to open the item table window and get the listUpdated flag.
             // Will uncomment when item table window is implemented.
-            /*bool? result = ItemsWindow.ShowDialog();
+            bool? result = ItemsWindow.ShowDialog();
 
             if (result == true) // If the user closes the item table window
             {
@@ -45,13 +45,13 @@ namespace Group_Project
                 {
                     // Update the itemComboBox, may have to change this implementation later on.
                     itemComboBox.Items.Clear();
-                    foreach (string item in ItemsWindow.itemList)
+                    foreach (string item in itemList)
                     {
                         itemComboBox.Items.Add(item);
                     }
 
                 }
-            }*/
+            }
         }
 
         /// <summary>
