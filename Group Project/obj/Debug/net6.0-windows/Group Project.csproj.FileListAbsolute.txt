@@ -22,3 +22,12 @@ C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupP
 C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Items\wndItems.baml
 C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Main\wndMain.baml
 C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Search\wndSearch.baml
+C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\System.Configuration.ConfigurationManager.dll
+C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\System.Data.OleDb.dll
+C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\System.Diagnostics.PerformanceCounter.dll
+C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\System.Security.Cryptography.ProtectedData.dll
+C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.csproj.AssemblyReference.cache
+C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.sourcelink.json
+C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.csproj.CopyComplete
