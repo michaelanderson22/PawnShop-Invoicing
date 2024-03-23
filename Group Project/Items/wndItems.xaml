@@ -7,6 +7,20 @@
         mc:Ignorable="d"
         Title="wndItems" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="2" Grid.Column="1" Content="Code:" VerticalAlignment="Top"/>
+        <Label Grid.Row="2" Grid.Column="1" Content="Cost:" VerticalAlignment="Center"/>
+        <Label Grid.Row="2" Grid.Column="1" Content="Desc:" VerticalAlignment="Bottom"/>
+        <DataGrid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+
     </Grid>
 </Window>
