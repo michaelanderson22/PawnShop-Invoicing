@@ -19,6 +19,7 @@ namespace Group_Project {
     /// </summary>
     public partial class wndSearch : Window {
         clsSearchLogic searchLogic = new clsSearchLogic();
+        int SelectedInvoice; //this is how to communicate to main window 
         public wndSearch() {
             InitializeComponent();
             populateThings();
@@ -34,11 +35,23 @@ namespace Group_Project {
         //property for invoiceNum
 
         private void btnClear_Click(object sender, RoutedEventArgs e) {
-
+            dgDataGrid.ItemsSource = searchLogic.getInvoices();
+            cbNumber.SelectedIndex = -1; //is it -1 or 0
+            cbDate.SelectedIndex = -1;
+            cbCosts.SelectedIndex = -1;
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e) {
             //set the invoice ID local variable
+        }
+
+        private void selectionChanged(object sender, SelectionChangedEventArgs e) {
+            dgDataGrid.ItemsSource = searchLogic.getInvoices(variables);
+        }
+
+        private void cbCosts_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            Int32.TryParse(cbCosts.SelectedItem.ToString(), out int value); //might need to overload toString
+            dgDataGrid.ItemsSource = searchLogic.getInvoicesWcost(value);
         }
     }
 }
