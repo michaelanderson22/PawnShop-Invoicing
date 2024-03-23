@@ -32,6 +32,26 @@ namespace Group_Project
         {
             wndItems ItemsWindow = new wndItems();
             ItemsWindow.Show();
+
+            // Use ShowDialog to open the item table window and get the listUpdated flag.
+            // Will uncomment when item table window is implemented.
+            /*bool? result = ItemsWindow.ShowDialog();
+
+            if (result == true) // If the user closes the item table window
+            {
+                // Retrieve listUpdated flag from the item table window
+                bool listUpdated = ItemsWindow.listUpdated;
+                if (listUpdated == true)
+                {
+                    // Update the itemComboBox
+                    itemComboBox.Items.Clear();
+                    foreach (string item in ItemsWindow.itemList)
+                    {
+                        itemComboBox.Items.Add(item);
+                    }
+
+                }
+            }*/
         }
 
         /// <summary>
