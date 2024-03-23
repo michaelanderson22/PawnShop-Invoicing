@@ -12,6 +12,7 @@
             <RowDefinition Height="64*"/>
         </Grid.RowDefinitions>
         <DataGrid x:Name="dgDataGrid" HorizontalAlignment="Left" Height="150" Margin="65,171,0,0" VerticalAlignment="Top" Width="428" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.RowSpan="2"/>
+<<<<<<< Updated upstream
         <Button x:Name="btnClear" Content="Clear Filter" HorizontalAlignment="Left" Height="30" Margin="540,165,0,0" VerticalAlignment="Top" Width="97" Click="btnClear_Click"/>
         <Button x:Name="btnSelect" Content="Select Invoice" HorizontalAlignment="Left" Height="30" Margin="540,224,0,0" VerticalAlignment="Top" Width="97" Click="btnSelect_Click"/>
         <Label x:Name="lblInvoice" Content="All Invoices" HorizontalAlignment="Left" Height="24" Margin="65,0,0,0" VerticalAlignment="Center" Width="87"/>
@@ -21,6 +22,17 @@
         <ComboBox x:Name="cbDate" HorizontalAlignment="Left" Height="26" Margin="340,79,0,0" VerticalAlignment="Top" Width="78"/>
         <Label x:Name="lblCosts" Content="Total Costs: " HorizontalAlignment="Left" Height="26" Margin="433,79,0,0" VerticalAlignment="Top" Width="83"/>
         <ComboBox x:Name="cbCosts" HorizontalAlignment="Left" Height="26" Margin="508,79,0,0" VerticalAlignment="Top" Width="78"/>
+=======
+        <Button x:Name="btnClear" Content="Clear Filter" HorizontalAlignment="Left" Height="30" Margin="540,171,0,0" VerticalAlignment="Top" Width="97" Click="btnClear_Click"/>
+        <Button x:Name="btnSelect" Content="Select Invoice" HorizontalAlignment="Left" Height="30" Margin="540,234,0,0" VerticalAlignment="Top" Width="97" Click="btnSelect_Click"/>
+        <Label x:Name="lblInvoice" Content="All Invoices" HorizontalAlignment="Left" Height="24" Margin="65,0,0,0" VerticalAlignment="Center" Width="87"/>
+        <ComboBox x:Name="cbNumber" HorizontalAlignment="Left" Height="26" Margin="164,79,0,0" VerticalAlignment="Top" Width="78" SelectionChanged="selectionChanged"/>
+        <Label x:Name="lblNumber" Content="Invoice Number:" HorizontalAlignment="Left" Height="26" Margin="65,79,0,0" VerticalAlignment="Top" Width="94"/>
+        <Label x:Name="lblDate" Content="Invoice Date:" HorizontalAlignment="Left" Height="26" Margin="255,79,0,0" VerticalAlignment="Top" Width="83"/>
+        <ComboBox x:Name="cbDate" HorizontalAlignment="Left" Height="26" Margin="340,79,0,0" VerticalAlignment="Top" Width="78" SelectionChanged="selectionChanged"/>
+        <Label x:Name="lblCosts" Content="Total Costs: " HorizontalAlignment="Left" Height="26" Margin="433,79,0,0" VerticalAlignment="Top" Width="83"/>
+        <ComboBox x:Name="cbCosts" HorizontalAlignment="Left" Height="26" Margin="508,79,0,0" VerticalAlignment="Top" Width="78" SelectionChanged="cbCosts_SelectionChanged"/>
+>>>>>>> Stashed changes
 
     </Grid>
 </Window>

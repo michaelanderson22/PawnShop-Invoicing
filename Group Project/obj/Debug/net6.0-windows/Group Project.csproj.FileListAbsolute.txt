@@ -22,3 +22,36 @@ C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupP
 C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Items\wndItems.baml
 C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Main\wndMain.baml
 C:\Users\micha\OneDrive\School\Weber\CS3280\Projects\Group Project\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Search\wndSearch.baml
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\Group Project.exe
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\Group Project.deps.json
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\Group Project.runtimeconfig.json
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\Group Project.dll
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\Group Project.pdb
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\System.Configuration.ConfigurationManager.dll
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\System.Data.OleDb.dll
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\System.Diagnostics.PerformanceCounter.dll
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\System.Security.Cryptography.ProtectedData.dll
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.csproj.AssemblyReference.cache
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Items\wndItems.g.cs
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Main\wndMain.g.cs
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Search\wndSearch.g.cs
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project_MarkupCompile.cache
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project_MarkupCompile.lref
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Items\wndItems.baml
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Main\wndMain.baml
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Search\wndSearch.baml
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.g.resources
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.AssemblyInfoInputs.cache
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.AssemblyInfo.cs
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.csproj.CoreCompileInputs.cache
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.sourcelink.json
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Pr.1D0F99F7.Up2Date
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.dll
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\refint\Group Project.dll
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.pdb
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.genruntimeconfig.cache
+C:\Users\bello\OneDrive\Documents\GitHub\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\ref\Group Project.dll
