@@ -46,12 +46,12 @@ namespace Group_Project {
         }
 
         private void selectionChanged(object sender, SelectionChangedEventArgs e) {
-            dgDataGrid.ItemsSource = searchLogic.getInvoices(variables);
+            dgDataGrid.ItemsSource = searchLogic.getInvoices();
         }
 
         private void cbCosts_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             Int32.TryParse(cbCosts.SelectedItem.ToString(), out int value); //might need to overload toString
-            dgDataGrid.ItemsSource = searchLogic.getInvoicesWcost(value);
+            //dgDataGrid.ItemsSource = searchLogic.getInvoicesWcost(value);
         }
     }
 }
