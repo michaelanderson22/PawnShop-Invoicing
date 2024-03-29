@@ -74,6 +74,10 @@ namespace Group_Project {
             return $"SELECT * FROM Invoices WHERE InvoiceDate = #{date}#";
         }
 
+        public static string getInvoice(string invoiceNum, int cost) {
+            return $"SELECT * FROM Invoices WHERE InvoiceNum = {invoiceNum} AND TotalCost = {cost}"; //had to write this myself idk if it's right
+        }
+
         /// <summary>
         /// get distict invoices in ascending order by invoice number
         /// </summary>
