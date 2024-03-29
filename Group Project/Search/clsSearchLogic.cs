@@ -58,13 +58,14 @@ namespace Group_Project {
             ds = dataAccess.ExecuteSQLStatement(sSQL, ref iRet);
             string temp;
 
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++) {
-                temp = ds.Tables[0].Rows[i][0].ToString();
-                numbers.Add(temp);
-            }
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    temp = ds.Tables[0].Rows[i][0].ToString();
+                    numbers.Add(temp);
+                }
 
-            return numbers;
-        }
+                return numbers;
+            }
 
         /// <summary>
         /// get all distict dates for cb
@@ -77,13 +78,14 @@ namespace Group_Project {
             ds = dataAccess.ExecuteSQLStatement(sSQL, ref iRet);
             string temp;
 
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++) {
-                temp = ds.Tables[0].Rows[i][0].ToString();
-                dates.Add(temp);
-            }
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    temp = ds.Tables[0].Rows[i][0].ToString();
+                    dates.Add(temp);
+                }
 
-            return dates;
-        }
+                return dates;
+            }
 
         /// <summary>
         /// get all distinct costs for cb
@@ -96,13 +98,14 @@ namespace Group_Project {
             ds = dataAccess.ExecuteSQLStatement(sSQL, ref iRet);
             string temp;
 
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++) {
-                temp = ds.Tables[0].Rows[i][0].ToString();
-                costs.Add(temp);
-            }
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    temp = ds.Tables[0].Rows[i][0].ToString();
+                    costs.Add(temp);
+                }
 
-            return costs;
-        }
+                return costs;
+            }
 
         /// <summary>
         /// sets a string to query the database by or something like that?
@@ -168,11 +171,11 @@ namespace Group_Project {
         int cost;
         List<clsItem> items;
 
-        public int theInvoiceNum { get { return invoiceNum; }  set { invoiceNum = value; } }
+            public int theInvoiceNum { get { return invoiceNum; } set { invoiceNum = value; } }
 
-        public string theDate { get { return date; } set { date = value; } }
+            public string theDate { get { return date; } set { date = value; } }
 
-        public int theCost { get { return cost; } set { cost = value; } }
+            public int theCost { get { return cost; } set { cost = value; } }
 
         public List<clsItem> theItems { get { return items; } set { items = value; } }
     }

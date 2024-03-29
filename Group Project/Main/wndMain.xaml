@@ -5,6 +5,73 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Group_Project"
         mc:Ignorable="d"
-        Title="wndMain" Height="450" Width="800">
-    <Grid/>
+        ResizeMode="NoResize"
+        Title="wndMain" Height="520" Width="680">
+    <Grid>
+        <!-- Menu -->
+        <Menu>
+            <MenuItem Header="_Items">
+                <MenuItem Header="_Update Item Table" Click="UpdateItemTable_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Search">
+                <MenuItem Header="Invoices" Click="Search_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <StackPanel Margin="10,50,455,10">
+            <Label Content="Invoices"></Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="50*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Margin="0 0 5 0" Grid.Column="0" Content="Add" Click="AddInvoice_Click"></Button>
+                <Button Margin="5 0 0 0" Grid.Column="1" Content="Edit" Click="EditInvoice_Click"></Button>
+            </Grid>
+
+            <DataGrid Name="invoiceDataGrid" AutoGenerateColumns="False" Margin="0 0 0 0" SelectionMode="Single" SelectionChanged="InvoiceDataGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Invoice Number" Binding="{Binding InvoiceNumber}" Width="50*" />
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="20*" />
+                    <DataGridTextColumn Header="Total Cost" Binding="{Binding TotalCost}" Width="30*" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </StackPanel>
+
+        <!-- Invoice Details Section, will update depending on whether the user is creating a new invoice, or editing an invoice. -->
+        <StackPanel Name="invoicePanel" Margin="241,50,10,0" Visibility="Visible">
+            <TextBlock Text="Invoice Number: TBD" />
+            <DatePicker Name="datePicker" Margin="0 10 0 0"/>
+
+            <!-- Item Selection Section -->
+            <ComboBox Name="itemComboBox" Margin="0 10 0 0" Width="200" SelectionChanged="ItemComboBox_SelectionChanged"/>
+            <TextBox Name="itemCostTextBox" Margin="10 10 0 0" IsReadOnly="True"/>
+            <Button Content="Add Item" Margin="10 10 0 0" Click="AddItem_Click"/>
+
+            <!-- Item List -->
+            <DataGrid Name="itemDataGrid" AutoGenerateColumns="False" Margin="0 20 0 0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Item" Binding="{Binding Item}" Width="*" />
+                    <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="*" />
+                    <DataGridTemplateColumn Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" Click="DeleteItem_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Total Cost -->
+            <TextBlock Name="totalCostTextBlock" Margin="0 20 0 0" FontWeight="Bold"/>
+
+            <!-- Save Button -->
+            <Button Content="Save Invoice" Margin="0 20 0 0" Click="SaveInvoice_Click"/>
+        </StackPanel>
+        
+
+    </Grid>
 </Window>
