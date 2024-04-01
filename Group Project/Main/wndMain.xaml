@@ -42,7 +42,7 @@
 
         <!-- Invoice Details Section, will update depending on whether the user is creating a new invoice, or editing an invoice. -->
         <StackPanel Name="invoicePanel" Margin="241,50,10,0" Visibility="Visible">
-            <TextBlock Text="Invoice Number: TBD" />
+            <TextBlock Name="invoiceNumberLabel" Text="Invoice Number: TBD" />
             <DatePicker Name="datePicker" Margin="0 10 0 0"/>
 
             <!-- Item Selection Section -->

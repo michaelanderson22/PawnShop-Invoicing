@@ -24,6 +24,10 @@ namespace Group_Project
         public wndMain()
         {
             InitializeComponent();
+
+            //Hide the invoice panel by default, will show when Add Invoice button or edit invoice button is clicked
+            invoicePanel.Visibility = Visibility.Collapsed;
+            updateItemComboBox();
         }
 
         // Menu Item Methods
@@ -72,14 +76,21 @@ namespace Group_Project
             wndSearch SearchWindow = new wndSearch();
 
             // Use ShowDialog to open the search window and get the search result
-            // Will uncomment when search window SelectedInvoice is implemented.
-            /*bool? result = SearchWindow.ShowDialog();
+            bool? result = SearchWindow.ShowDialog();
 
             if (result == true) // If the user closes the search window with a valid selection
             {
                 // Retrieve selected invoice information from the search window
                 int selectedInvoiceNumber = SearchWindow.SelectedInvoice;
-            }*/
+            }
+        }
+
+        // Update Item Combo Box
+        private void updateItemComboBox()
+        {
+            itemComboBox.Items.Clear();
+            List<clsItem> itemList = clsItemsLogic.getItemList();
+            itemComboBox.ItemsSource = itemList;
         }
 
 
@@ -88,7 +99,7 @@ namespace Group_Project
 
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
-
+            mainLogic.items.Add((clsItem)itemComboBox.SelectedItem);
         }
 
         private void ItemComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -108,14 +119,23 @@ namespace Group_Project
 
 
 
+
+
         // Invoice List Methods
 
         private void InvoiceDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+        /// <summary>
+        /// runs when the Add Invoice button is clicked, shows the invoice form to be filled out.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddInvoice_Click(object sender, RoutedEventArgs e)
         {
+            invoicePanel.Visibility = Visibility.Visible;
+            invoiceNumberLabel.Text = "Invoice Number: TBD";
 
         }
 

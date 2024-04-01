@@ -38,7 +38,7 @@ namespace Group_Project
         /// <param name="invoiceDate"></param>
         /// <param name="totalCost"></param>
         /// <returns></returns>
-        public static string insertInvoice(DateTime invoiceDate, int totalCost)
+        public static string insertInvoice(DateTime invoiceDate, Decimal totalCost)
         {
             return "INSERT INTO Invoices(InvoiceDate, TotalCost) Values(#" + invoiceDate + "#, " + totalCost + ")";
         }
@@ -79,6 +79,11 @@ namespace Group_Project
         public static string deleteInvoice(int invoiceNum)
         {
             return "DELETE FROM Invoices WHERE InvoiceNum = " + invoiceNum;
+        }
+
+        public static string getMostRecentInvoiceNumber()
+        {
+            return "SELECT InvoiceNum FROM Invoices ORDER BY InvoiceNum DESC LIMIT 1\r\n";
         }
 
     }

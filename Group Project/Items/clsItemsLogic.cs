@@ -40,6 +40,9 @@ namespace Group_Project
     public class clsItem
     {
         // this class provide items that can be listed for use my data grids in various windows
+        public string itemCode { get; set; }
+        public string itemDesc { get; set; }
+        public decimal itemCost { get; set; }
 
     }
 }

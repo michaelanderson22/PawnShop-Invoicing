@@ -19,7 +19,7 @@ namespace Group_Project {
     /// </summary>
     public partial class wndSearch : Window {
         clsSearchLogic searchLogic = new clsSearchLogic();
-        int SelectedInvoice; //this is how to communicate to main window 
+        public int SelectedInvoice; //this is how to communicate to main window 
         public wndSearch() {
             InitializeComponent();
             populateThings();
