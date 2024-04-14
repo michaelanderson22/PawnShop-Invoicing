@@ -20,7 +20,7 @@ namespace Group_Project
         /// </summary>
         public string sql = "";
 
-        public List<clsItem> items = new List<clsItem>();
+        public List<clsItem> addedItems = new List<clsItem>();
 
 
         /*public List<clsItem> getItemList()
@@ -51,7 +51,7 @@ namespace Group_Project
 
         public void addItemToList(clsItem item)
         {
-            items.Add(item);
+            addedItems.Add(item);
         }
 
         public void addInvoice(DateTime invoiceDate, decimal totalCost)
@@ -74,11 +74,11 @@ namespace Group_Project
                 invoiceNum = int.Parse(ds.Tables[0].Rows[0][0].ToString());
 
                 // Insert Line Item
-                for (int i = 0; i < items.Count; i++)
+                for (int i = 0; i < addedItems.Count; i++)
                 {
                     int lineItemNum = i + 1;
 
-                    sql = clsMainSQL.insertLineItem(invoiceNum, lineItemNum, items[i].itemCode);
+                    sql = clsMainSQL.insertLineItem(invoiceNum, lineItemNum, addedItems[i].sID);
                     rowsAffected = db.ExecuteNonQuery(sql);
                 }
             }

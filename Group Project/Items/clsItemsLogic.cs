@@ -46,9 +46,9 @@ namespace Group_Project {
 
 	}
 	public class clsItem {
-		string sID;
-		string sDesc;
-		decimal sCost;
+		public string sID;
+		public string sDesc;
+		public decimal sCost;
 		public clsItem(string id, string desc, decimal cost) {
 			try {
 				sID = id; sDesc = desc; sCost = cost;
@@ -59,7 +59,12 @@ namespace Group_Project {
 				throw;
 			}
 		}
-		// this class provide items that can be listed for use my data grids in various windows
 
-	}
+        public override string ToString()
+        {
+            return sDesc;
+        }
+        // this class provide items that can be listed for use my data grids in various windows
+
+    }
 }
