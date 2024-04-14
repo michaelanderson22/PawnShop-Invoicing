@@ -23,5 +23,9 @@ namespace Group_Project
         {
             InitializeComponent();
         }
-    }
+
+		private void SubmitButton_Click(object sender, RoutedEventArgs e) {
+
+		}
+	}
 }

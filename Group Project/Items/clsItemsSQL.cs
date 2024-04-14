@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Group_Project
 {
-    class clsItemsSQL
+    public class clsItemsSQL
     {
         /// <summary>
         /// This method returns a string for a SQL query to grab all records from the ItemDesc table
