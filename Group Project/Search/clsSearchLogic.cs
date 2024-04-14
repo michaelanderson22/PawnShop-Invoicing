@@ -177,13 +177,13 @@ namespace Group_Project
     class clsInvoice
     {
         int invoiceNum;
-        string date;
+        DateTime date;
         int cost;
         List<clsItem> items;
 
         public int theInvoiceNum { get { return invoiceNum; } set { invoiceNum = value; } }
 
-        public string theDate { get { return date; } set { date = value; } }
+        public DateTime theDate { get { return date; } set { date = value; } }
 
         public int theCost { get { return cost; } set { cost = value; } }
 

@@ -83,7 +83,7 @@ namespace Group_Project
 
         public static string getMostRecentInvoiceNumber()
         {
-            return "SELECT InvoiceNum FROM Invoices ORDER BY InvoiceNum DESC LIMIT 1\r\n";
+            return "SELECT TOP 1 InvoiceNum FROM Invoices ORDER BY InvoiceNum DESC";
         }
 
     }

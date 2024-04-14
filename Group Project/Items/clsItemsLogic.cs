@@ -45,26 +45,35 @@ namespace Group_Project {
 		}
 
 	}
-	public class clsItem {
-		public string sID;
-		public string sDesc;
-		public decimal sCost;
-		public clsItem(string id, string desc, decimal cost) {
-			try {
-				sID = id; sDesc = desc; sCost = cost;
+    public class clsItem
+    {
+        // Declare variables like this, as properties, to display them in datagrids
+        public string sID { get; set; }
+        public string sDesc { get; set; }
+        public decimal sCost { get; set; }
 
-			}
-			catch (Exception ex) {
+        public clsItem(string id, string desc, decimal cost)
+        {
+            try
+            {
+                sID = id;
+                sDesc = desc;
+                sCost = cost;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
-				throw;
-			}
-		}
-
+        // Override the ToString method so that item names can be displayed in a combo box
         public override string ToString()
         {
             return sDesc;
         }
-        // this class provide items that can be listed for use my data grids in various windows
 
+        // This class provides items that can be listed for use by data grids in various windows
     }
+
+
 }
