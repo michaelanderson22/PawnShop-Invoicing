@@ -5,59 +5,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Group_Project
-{
-    class clsItemsLogic
-    {
+namespace Group_Project {
+	public static class clsItemsLogic {
 
-        //!!! <<<<****>>>>> This list will be public and static for any window that needs full list of items to use
-        public static List<clsItem> getItemList()
-        {
-            /// <summary>
-            /// clsDataAccess object. Handles all database calls.
-            /// </summary>
-            clsDataAccess db = new clsDataAccess();
+		/// <summary>
+		/// Public list for app to use when it need a list of all items in the db
+		/// </summary>
+		/// <returns>List of cls Items</returns>
+		public static List<clsItem> getItemList() {
+			string sql;
+			clsDataAccess data = new clsDataAccess();
+			clsItemsSQL itemSQL = new clsItemsSQL();
+			try {
 
-            /// <summary>
-            /// Holds the sql statement to be executed by clsDataAccess.
-            /// </summary>
-            string sql = "";
+			int retVal = 0;
+			
+			DataSet ds = new DataSet();
+			List<clsItem> itemList = new List<clsItem>();
 
-            int retVal = 0;
+			sql = itemSQL.QueryAllItemDesc();
+			ds = data.ExecuteSQLStatement(sql, ref retVal);
 
-            DataSet ds = new DataSet();
-            List<clsItem> itemList = new List<clsItem>();
+			if (ds != null && ds.Tables.Count > 0) {
+				foreach (DataRow row in ds.Tables[0].Rows) {
+					clsItem item = new clsItem(row["ItemCode"].ToString(), row["ItemDesc"].ToString(), (decimal)row["Cost"]);
+					itemList.Add(item);
+				}
+			}
+			return itemList;
+			}
+			catch (Exception ex) {
 
-            sql = clsMainSQL.getItemDesc();
-            ds = db.ExecuteSQLStatement(sql, ref retVal);
+				throw;
+			}
+		}
 
-            if (ds != null && ds.Tables.Count > 0)
-            {
-                foreach (DataRow row in ds.Tables[0].Rows)
-                {
-                    clsItem item = new clsItem();
-                    item.itemCode = row["ItemCode"].ToString();
-                    item.itemDesc = row["ItemDesc"].ToString();
-                    item.itemCost = decimal.Parse(row["Cost"].ToString());
+		public static void NewItem(clsItem item) {
+				
+		}
 
-                    itemList.Add(item);
-                }
-            }
-            return itemList;
-        }
-    }
+	}
+	public class clsItem {
+		string sID;
+		string sDesc;
+		decimal sCost;
+		public clsItem(string id, string desc, decimal cost) {
+			try {
+				sID = id; sDesc = desc; sCost = cost;
 
-    public class clsItem
-    {
-        // this class provide items that can be listed for use my data grids in various windows
-        public string itemCode { get; set; }
-        public string itemDesc { get; set; }
-        public decimal itemCost { get; set; }
+			}
+			catch (Exception ex) {
 
-        public override string ToString()
-        {
-            return itemDesc;
-        }
+				throw;
+			}
+		}
+		// this class provide items that can be listed for use my data grids in various windows
 
-    }
+	}
 }
