@@ -81,7 +81,9 @@ namespace Group_Project
             if (result == true) // If the user closes the search window with a valid selection
             {
                 // Retrieve selected invoice information from the search window
-                int selectedInvoiceNumber = SearchWindow.SelectedInvoice;
+
+
+                /*int selectedInvoiceNumber = SearchWindow.SelectedInvoice;*/
             }
         }
 
@@ -99,7 +101,7 @@ namespace Group_Project
 
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
-            mainLogic.items.Add((clsItem)itemComboBox.SelectedItem);
+            mainLogic.addedItems.Add((clsItem)itemComboBox.SelectedItem);
         }
 
         private void ItemComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
