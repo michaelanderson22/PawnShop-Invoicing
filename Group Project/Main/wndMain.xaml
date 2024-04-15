@@ -27,14 +27,14 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Margin="0 0 5 0" Grid.Column="0" Content="Add" Click="AddInvoice_Click"></Button>
-                <Button Margin="5 0 0 0" Grid.Column="1" Content="Edit" Click="EditInvoice_Click"></Button>
+                <Button Margin="4,0,0,0" Grid.Column="1" Content="Edit" Click="EditInvoice_Click" Height="20" VerticalAlignment="Top"></Button>
             </Grid>
 
             <DataGrid Name="invoiceDataGrid" AutoGenerateColumns="False" Margin="0 0 0 0" SelectionMode="Single" SelectionChanged="InvoiceDataGrid_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Invoice Number" Binding="{Binding InvoiceNumber}" Width="50*" />
-                    <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="20*" />
-                    <DataGridTextColumn Header="Total Cost" Binding="{Binding TotalCost}" Width="30*" />
+                    <DataGridTextColumn Header="Invoice Number" Binding="{Binding theInvoiceNum}" Width="50*" />
+                    <DataGridTextColumn Header="Date" Binding="{Binding theDate}" Width="20*" />
+                    <DataGridTextColumn Header="Total Cost" Binding="{Binding theCost}" Width="30*" />
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -42,19 +42,20 @@
 
         <!-- Invoice Details Section, will update depending on whether the user is creating a new invoice, or editing an invoice. -->
         <StackPanel Name="invoicePanel" Margin="241,50,10,0" Visibility="Visible">
-            <TextBlock Text="Invoice Number: TBD" />
+            <TextBlock Name="invoiceNumberLabel" Text="Invoice Number: TBD" />
             <DatePicker Name="datePicker" Margin="0 10 0 0"/>
 
             <!-- Item Selection Section -->
             <ComboBox Name="itemComboBox" Margin="0 10 0 0" Width="200" SelectionChanged="ItemComboBox_SelectionChanged"/>
+            <Label Height="25" Margin="10 10 0 0">Item Cost</Label>
             <TextBox Name="itemCostTextBox" Margin="10 10 0 0" IsReadOnly="True"/>
             <Button Content="Add Item" Margin="10 10 0 0" Click="AddItem_Click"/>
 
             <!-- Item List -->
             <DataGrid Name="itemDataGrid" AutoGenerateColumns="False" Margin="0 20 0 0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Item" Binding="{Binding Item}" Width="*" />
-                    <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="*" />
+                    <DataGridTextColumn Header="Item" Binding="{Binding sDesc}" Width="70*" />
+                    <DataGridTextColumn Header="Cost" Binding="{Binding sCost}" Width="30*" />
                     <DataGridTemplateColumn Width="Auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -66,12 +67,13 @@
             </DataGrid>
 
             <!-- Total Cost -->
-            <TextBlock Name="totalCostTextBlock" Margin="0 20 0 0" FontWeight="Bold"/>
+            <TextBlock Name="totalCostTextBlock" Margin="0 20 0 0" FontWeight="Bold" Text="Total Cost: $0.00"/>
+
 
             <!-- Save Button -->
             <Button Content="Save Invoice" Margin="0 20 0 0" Click="SaveInvoice_Click"/>
         </StackPanel>
-        
+
 
     </Grid>
 </Window>
