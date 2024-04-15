@@ -139,9 +139,8 @@ namespace Group_Project {
                 selectedDate = cbDate.SelectedItem.ToString(); //overload?
                 dgDataGrid.ItemsSource = searchLogic.beginSearch();
             } else { clsSearchLogic.date = false; }
-            Int32.TryParse(cbCosts.SelectedItem.ToString(), out int value); //might need to overload toString
+            Int32.TryParse(cbDate.SelectedItem.ToString(), out int value); //might need to overload toString
             //dgDataGrid.ItemsSource = searchLogic.getInvoicesWcost(value);
         }
-
     }
 }

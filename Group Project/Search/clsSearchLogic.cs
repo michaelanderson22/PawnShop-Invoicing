@@ -163,10 +163,10 @@ namespace Group_Project
                 clsInvoice temp = new clsInvoice();
                 Int32.TryParse(ds.Tables[0].Rows[i][0].ToString(), out tempInt); //invoice number
                 temp.theInvoiceNum = tempInt;
-                tempString = ds.Tables[0].Rows[i][1].ToString(); //invoice date
-                temp.theDate = tempString;
+                temp.theDate = (DateTime)ds.Tables[0].Rows[i][1];
                 Int32.TryParse(ds.Tables[0].Rows[i][2].ToString(), out tempInt); //total cost
                 temp.theCost = tempInt;
+
                 //where do i get the list of items?
                 invoices.Add(temp);
             }
