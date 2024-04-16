@@ -70,7 +70,7 @@ namespace Group_Project
                 decimal totalCost = 0;
                 foreach (clsItem item in addedItems)
                 {
-                    totalCost += item.sCost;
+                    totalCost += item.Cost;
                 }
                 return totalCost;
             }
@@ -109,7 +109,7 @@ namespace Group_Project
                     {
                         int lineItemNum = i + 1;
 
-                        sql = clsMainSQL.insertLineItem(invoiceNum, lineItemNum, addedItems[i].sID);
+                        sql = clsMainSQL.insertLineItem(invoiceNum, lineItemNum, addedItems[i].ID);
                         rowsAffected = db.ExecuteNonQuery(sql);
                     }
                 }

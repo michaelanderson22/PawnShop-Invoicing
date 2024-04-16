@@ -16,6 +16,7 @@ namespace Group_Project {
 			string sql;
 			clsDataAccess data = new clsDataAccess();
 			clsItemsSQL itemSQL = new clsItemsSQL();
+		
 			try {
 
 			int retVal = 0;
@@ -39,41 +40,50 @@ namespace Group_Project {
 				throw;
 			}
 		}
+		public static DataSet getItemDataSet() {
+			string sql;
+			clsDataAccess data = new clsDataAccess();
+			clsItemsSQL itemSQL = new clsItemsSQL();
+			try {
+
+				int retVal = 0;
+
+				DataSet ds = new DataSet();
+				List<clsItem> itemList = new List<clsItem>();
+
+				sql = itemSQL.QueryAllItemDesc();
+				ds = data.ExecuteSQLStatement(sql, ref retVal);
+				return ds;
+			}
+			catch (Exception ex) {
+
+				throw;
+			}
+		}
 
 		public static void NewItem(clsItem item) {
 				
 		}
 
 	}
-    public class clsItem
-    {
-        // Declare variables like this, as properties, to display them in datagrids
-        public string sID { get; set; }
-        public string sDesc { get; set; }
-        public decimal sCost { get; set; }
+	public class clsItem {
+		public string ID { get { return sID; } }
+		private string sID;
+		public string Desc { get { return sDesc; } }	
+		private string sDesc;
+		public decimal Cost { get { return sCost; } }
+		private decimal sCost;
+		public clsItem(string id, string desc, decimal cost) {
+			try {
+				sID = id; sDesc = desc; sCost = cost;
 
-        public clsItem(string id, string desc, decimal cost)
-        {
-            try
-            {
-                sID = id;
-                sDesc = desc;
-                sCost = cost;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+			}
+			catch (Exception ex) {
 
-        // Override the ToString method so that item names can be displayed in a combo box
-        public override string ToString()
-        {
-            return sDesc;
-        }
+				throw;
+			}
+		}
+		// this class provide items that can be listed for use my data grids in various windows
 
-        // This class provides items that can be listed for use by data grids in various windows
-    }
-
-
+	}
 }
