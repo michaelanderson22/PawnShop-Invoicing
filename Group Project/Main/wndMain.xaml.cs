@@ -201,18 +201,24 @@ namespace Group_Project
         {
             try
             {
-                // Add invoice
-                mainLogic.addInvoice(datePicker.SelectedDate.Value);
+                if (datePicker.SelectedDate.HasValue)
+                {
+                    // Add invoice
+                    mainLogic.addInvoice(datePicker.SelectedDate.Value);
 
-                // Update invoice list
-                updateInvoicesList();
+                    // Update invoice list
+                    updateInvoicesList();
 
-                MessageBox.Show("Invoice Saved");
+                    MessageBox.Show("Invoice Saved");
 
-                invoicePanel.Visibility = Visibility.Collapsed;
+                    invoicePanel.Visibility = Visibility.Collapsed;
 
-                clearInvoiceForm();
-
+                    clearInvoiceForm();
+                }
+                else
+                {
+                    MessageBox.Show("Please select an invoice date");
+                }
             } 
             catch (Exception ex)
             {

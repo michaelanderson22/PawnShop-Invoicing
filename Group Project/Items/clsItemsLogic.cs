@@ -83,7 +83,13 @@ namespace Group_Project {
 				throw;
 			}
 		}
-		// this class provide items that can be listed for use my data grids in various windows
 
-	}
+        // Override the ToString method so that item names can be displayed in a combo box
+        public override string ToString()
+        {
+            return sDesc;
+        }
+        // this class provide items that can be listed for use my data grids in various windows
+
+    }
 }
