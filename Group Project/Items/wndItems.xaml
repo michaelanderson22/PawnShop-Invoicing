@@ -35,9 +35,9 @@
             <Label Grid.Row="0" Grid.Column="0" Content="Code:" VerticalAlignment="Top"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Cost:" VerticalAlignment="Center"/>
             <Label Grid.Row="2" Grid.Column="0" Content="Desc:" VerticalAlignment="Bottom"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="BLARG" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="BLARG" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="BLARG" VerticalAlignment="Center"/>
+            <TextBox x:Name="codeTextBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="" VerticalAlignment="Center"/>
+            <TextBox x:Name="costTextBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="" VerticalAlignment="Center"/>
+            <TextBox x:Name="descTextBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="" VerticalAlignment="Center"/>
         </Grid>
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -54,7 +54,7 @@
             <RadioButton x:Name="EditRdoBtn" Grid.Row="1" Grid.Column="1" Content="Edit Old Item" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <RadioButton x:Name="DeleteRdoBtn" Grid.Row="2" Grid.Column="1" Content="Delete an Item" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Grid>
-        <DataGrid x:Name="ItemGrid" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-        <Button x:Name="SubmitButton" Grid.Row="3" Grid.Column="3" Content="SUBMIT" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="3"/>
+        <DataGrid x:Name="ItemGrid" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ItemGrid_SelectionChanged"/>
+        <Button x:Name="SubmitButton" Grid.Row="3" Grid.Column="3" Content="SUBMIT" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="3" Click="SubmitButton_Click"/>
     </Grid>
 </Window>

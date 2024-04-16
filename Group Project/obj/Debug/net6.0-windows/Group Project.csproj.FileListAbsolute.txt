@@ -64,3 +64,36 @@ F:\School Files\CS 3280\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windo
 F:\School Files\CS 3280\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Pr.1D0F99F7.Up2Date
 F:\School Files\CS 3280\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.genruntimeconfig.cache
 F:\School Files\CS 3280\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\ref\Group Project.dll
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.csproj.AssemblyReference.cache
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Items\wndItems.g.cs
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Main\wndMain.g.cs
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Search\wndSearch.g.cs
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\App.g.cs
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project_MarkupCompile.cache
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project_MarkupCompile.lref
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.dll
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\refint\Group Project.dll
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.pdb
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\Group Project.exe
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\Group Project.deps.json
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\Group Project.runtimeconfig.json
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\Group Project.dll
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\Group Project.pdb
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\System.Configuration.ConfigurationManager.dll
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\System.Data.OleDb.dll
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\System.Diagnostics.PerformanceCounter.dll
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\System.Security.Cryptography.ProtectedData.dll
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Items\wndItems.baml
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Main\wndMain.baml
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Search\wndSearch.baml
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.g.resources
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.GeneratedMSBuildEditorConfig.editorconfig
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.AssemblyInfoInputs.cache
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.AssemblyInfo.cs
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.csproj.CoreCompileInputs.cache
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.sourcelink.json
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Pr.1D0F99F7.Up2Date
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.genruntimeconfig.cache
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\ref\Group Project.dll

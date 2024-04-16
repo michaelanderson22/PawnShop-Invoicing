@@ -166,7 +166,7 @@ namespace Group_Project
             {
                 if (itemComboBox.SelectedItem != null)
                 {
-                    itemCostTextBox.Text = "$" + ((clsItem)itemComboBox.SelectedItem).sCost.ToString();
+                    itemCostTextBox.Text = "$" + ((clsItem)itemComboBox.SelectedItem).Cost.ToString();
                 }
             }
             catch (Exception ex)
