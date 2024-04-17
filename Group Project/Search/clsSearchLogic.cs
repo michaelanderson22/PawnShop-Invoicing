@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.TextFormatting;
 
-namespace Group_Project
-{
-    class clsSearchLogic
-    {
+namespace Group_Project {
+    class clsSearchLogic {
         DataSet ds;
         clsDataAccess dataAccess = new clsDataAccess();
         /// <summary>
@@ -30,6 +28,10 @@ namespace Group_Project
         /// bool to see if a cost was selected
         /// </summary>
         public static bool cost = false;
+        /// <summary>
+        /// list of items for invoices
+        /// </summary>
+        List<clsItem> items;
 
         /*
         private void InvoiceSelected_Click(object sender, RoutedEventArgs e) {
@@ -52,15 +54,13 @@ namespace Group_Project
         /// </summary>
         /// <returns></returns>
 
-        public List<string> getNumbers()
-        {
+        public List<string> getNumbers() {
             int iRet = 0;
             List<string> numbers = new List<string>();
             string sSQL = clsSearchSQL.invoicesByNum();
             ds = dataAccess.ExecuteSQLStatement(sSQL, ref iRet);
             string temp;
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++) {
                 temp = ds.Tables[0].Rows[i][0].ToString();
                 numbers.Add(temp);
             }
@@ -71,15 +71,13 @@ namespace Group_Project
         /// get all distict dates for cb
         /// </summary>
         /// <returns></returns>
-        public List<string> getDates()
-        {
+        public List<string> getDates() {
             int iRet = 0;
             List<string> dates = new List<string>();
             string sSQL = clsSearchSQL.invoicesByDate();
             ds = dataAccess.ExecuteSQLStatement(sSQL, ref iRet);
             string temp;
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++) {
                 temp = ds.Tables[0].Rows[i][0].ToString();
                 dates.Add(temp);
             }
@@ -90,15 +88,13 @@ namespace Group_Project
         /// get all distinct costs for cb
         /// </summary>
         /// <returns></returns>
-        public List<string> getCosts()
-        {
+        public List<string> getCosts() {
             int iRet = 0;
             List<string> costs = new List<string>();
             string sSQL = clsSearchSQL.invoicesByCost();
             ds = dataAccess.ExecuteSQLStatement(sSQL, ref iRet);
             string temp;
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++) {
                 temp = ds.Tables[0].Rows[i][0].ToString();
                 costs.Add(temp);
             }
@@ -109,38 +105,24 @@ namespace Group_Project
         /// sets a string to query the database by or something like that?
         /// </summary>
         /// <returns></returns>
-        public List<clsInvoice> beginSearch()
-        {
+        public List<clsInvoice> beginSearch() {
             string sSQL = "";
             int theCost = wndSearch.selectedCost;
             string theDate = wndSearch.selectedDate;
             string theNumber = wndSearch.invoiceNumber.ToString();
-            if (id && cost && date)
-            {
+            if (id && cost && date) {
                 sSQL = clsSearchSQL.getInvoice(theNumber, theDate, theCost);
-            }
-            else if (id && cost)
-            {
+            } else if (id && cost) {
                 sSQL = clsSearchSQL.getInvoice(theNumber, theCost);
-            }
-            else if (id && date)
-            {
+            } else if (id && date) {
                 sSQL = clsSearchSQL.getInvoice(theNumber, theDate);
-            }
-            else if (cost && date)
-            {
+            } else if (cost && date) {
                 sSQL = clsSearchSQL.getInvoice(theCost, theDate);
-            }
-            else if (id)
-            {
+            } else if (id) {
                 sSQL = clsSearchSQL.getInvoice(theNumber);
-            }
-            else if (cost)
-            {
+            } else if (cost) {
                 sSQL = clsSearchSQL.getInvoice(theCost);
-            }
-            else
-            { //when they selected only the date
+            } else { //when they selected only the date
                 sSQL = clsSearchSQL.getInvoiceWithDate(theDate);
             }
             return queryInvoices(sSQL);
@@ -151,15 +133,14 @@ namespace Group_Project
         /// </summary>
         /// <param name="sSQL"></param>
         /// <returns></returns>
-        public List<clsInvoice> queryInvoices(string sSQL)
-        {
+        public List<clsInvoice> queryInvoices(string sSQL) {
             invoices = new List<clsInvoice>();
             int iRet = 0;
             string tempString;
             int tempInt;
+         
             ds = dataAccess.ExecuteSQLStatement(sSQL, ref iRet);
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++) {
                 clsInvoice temp = new clsInvoice();
                 Int32.TryParse(ds.Tables[0].Rows[i][0].ToString(), out tempInt); //invoice number
                 temp.theInvoiceNum = tempInt;
@@ -167,15 +148,47 @@ namespace Group_Project
                 Int32.TryParse(ds.Tables[0].Rows[i][2].ToString(), out tempInt); //total cost
                 temp.theCost = tempInt;
 
-                //where do i get the list of items?
+                temp.theItems = getItems(temp.theInvoiceNum);
                 invoices.Add(temp);
             }
+
+
             return invoices;
+        }
+
+        /// <summary>
+        /// gets items for an invoice
+        /// </summary>
+        /// <param name="invoiceNum"></param>
+        /// <returns></returns>
+        public List<clsItem> getItems(int invoiceNum) {
+            items = clsItemsLogic.getItemList(); //list of ALL the items from the database
+            int iRet = 0;
+            int tempInt = 0;
+            string sSQL = clsSearchSQL.itemsAndInvoices();
+            List<string> neededItems = new List<string>();
+            List<clsItem> theItems = new List<clsItem>();
+
+            ds = dataAccess.ExecuteSQLStatement(sSQL, ref iRet);
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++) {
+                Int32.TryParse(ds.Tables[0].Rows[i][0].ToString(), out tempInt); //invoice number from ds
+                if(tempInt == invoiceNum) {
+                    neededItems.Add(ds.Tables[0].Rows[i][2].ToString()); 
+                }
+            }
+
+            foreach (clsItem item in items) {
+                int i = 0;
+                if(item.ID == neededItems[i]) {
+                    theItems.Add(item);
+                    i++;
+                }
+            }
+            return theItems;
         }
     }
 
-    class clsInvoice
-    {
+    class clsInvoice {
         int invoiceNum;
         DateTime date;
         int cost;
