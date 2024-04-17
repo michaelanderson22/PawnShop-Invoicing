@@ -40,6 +40,18 @@ namespace Group_Project {
 				throw;
 			}
 		}
+
+		public static bool IsCodeUnique(string code) {
+			bool result = true;
+			foreach (clsItem item in getItemList()) {
+				if (code == item.ID.ToString()) {
+					result = false;
+					break;
+				}
+			}
+			return result;
+		}
+
 		public static DataSet getItemDataSet() {
 			string sql;
 			clsDataAccess data = new clsDataAccess();
