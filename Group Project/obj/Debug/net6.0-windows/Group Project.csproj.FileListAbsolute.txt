@@ -97,3 +97,4 @@ F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project
 F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Pr.1D0F99F7.Up2Date
 F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\Group Project.genruntimeconfig.cache
 F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\ref\Group Project.dll
+F:\School Files\CS 3280\CS3280-GroupProject-V4\CS3280-GroupProject\Group Project\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
