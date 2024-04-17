@@ -23,9 +23,9 @@ namespace Group_Project
         /// </summary>
         /// <param name="itemCode">Integer, corresponds to the item in the itemDesc Table</param>
         /// <returns> A string SQL query</returns>
-        public string QueryInvoiceByItemCode(int itemCode)
+        public string QueryInvoiceByItemCode(string itemCode)
         {
-            return $"select distinct(InvoiceNum) from LineItems where ItemCode = {itemCode};";
+            return $"select distinct(InvoiceNum) from LineItems where ItemCode = '{itemCode}';";
         }
         /// <summary>
         /// This method returns a string for a SQL query to update an items description and cost by its itemcode
@@ -34,9 +34,9 @@ namespace Group_Project
         /// <param name="cost"> Integer, Cost of Item</param>
         /// <param name="itemCode"> Int, item code for item in itemDesc table</param>
         /// <returns> A string SQL query</returns>
-        public string UpdateItemDescAndCost(string desc, int cost, int itemCode)
+        public string UpdateItemDescAndCost(string desc, int cost, string itemCode)
         {
-            return $"Update ItemDesc Set ItemDesc = {desc}, Cost = {cost} where ItemCode = {itemCode};";
+            return $"Update ItemDesc Set ItemDesc = '{desc}', Cost = {cost} where ItemCode = '{itemCode}';";
 
         }
         /// <summary>
@@ -46,18 +46,18 @@ namespace Group_Project
         /// <param name="cost"> Integer, Cost of Item</param>
         /// <param name="itemCode"> Int, item code for item in itemDesc table</param>
         /// <returns> A string SQL query</returns>
-        public string InsertNewItem(string desc, int itemCode, int cost)
+        public string InsertNewItem(string desc, string itemCode, int cost)
         {
-            return $"Insert into ItemDesc(ItemCode, ItemDesc, Cost) Values({itemCode}, {desc}, {cost});";
+            return $"Insert into ItemDesc(ItemCode, ItemDesc, Cost) Values('{itemCode}', '{desc}', {cost});";
         }
         /// <summary>
         /// This method returns a string for a SQL query to a record from the ItemDesc table
         /// </summary>
         /// <param name="itemCode">Integer, item to be deleted</param>
         /// <returns> A string SQL query</returns>
-        public string DeleteFromItemDesc(int itemCode)
+        public string DeleteFromItemDesc(string itemCode)
         {
-            return $"Delete from ItemDesc Where ItemCode = {itemCode};";
+            return $"Delete from ItemDesc Where ItemCode = '{itemCode}';";
         }
 
     }
