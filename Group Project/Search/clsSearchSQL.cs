@@ -102,6 +102,14 @@ namespace Group_Project {
             return "SELECT DISTINCT(TotalCost) From Invoices order by TotalCost";
         }
 
+        /// <summary>
+        /// get the connections between what items go to what invoices
+        /// </summary>
+        /// <returns></returns>
+        public static string itemsAndInvoices() {
+            return "SELECT * FROM LineItems";
+        }
+
 
     }
 }
