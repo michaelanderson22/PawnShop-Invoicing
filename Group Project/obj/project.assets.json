@@ -241,11 +241,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\School Files\\CS 3280\\CS3280-GroupProject-V4\\CS3280-GroupProject\\Group Project\\Group Project.csproj",
+      "projectUniqueName": "F:\\School Files\\CS 3280\\v5\\CS3280-GroupProject\\Group Project\\Group Project.csproj",
       "projectName": "Group Project",
-      "projectPath": "F:\\School Files\\CS 3280\\CS3280-GroupProject-V4\\CS3280-GroupProject\\Group Project\\Group Project.csproj",
+      "projectPath": "F:\\School Files\\CS 3280\\v5\\CS3280-GroupProject\\Group Project\\Group Project.csproj",
       "packagesPath": "C:\\Users\\Mitch\\.nuget\\packages\\",
-      "outputPath": "F:\\School Files\\CS 3280\\CS3280-GroupProject-V4\\CS3280-GroupProject\\Group Project\\obj\\",
+      "outputPath": "F:\\School Files\\CS 3280\\v5\\CS3280-GroupProject\\Group Project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Mitch\\AppData\\Roaming\\NuGet\\NuGet.Config",
