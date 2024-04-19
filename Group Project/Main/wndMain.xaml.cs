@@ -60,30 +60,25 @@ namespace Group_Project
         private void UpdateItemTable_Click(object sender, RoutedEventArgs e)
         {
             wndItems ItemsWindow = new wndItems();
-            ItemsWindow.Show();
 
-            /*// Use ShowDialog to open the item table window and get the listUpdated flag.
-            // Will uncomment when item table window is implemented.
+            // Subscribe to the Closed event of ItemsWindow
+            ItemsWindow.Closed += ItemsWindow_Closed;
+
+            // Use ShowDialog to open the item table window
             bool? result = ItemsWindow.ShowDialog();
 
-            if (result == true) // If the user closes the item table window
-            {
-                // Retrieve listUpdated flag from the item table window
-                bool listUpdated = ItemsWindow.listUpdated;
-                if (listUpdated == true)
-                {
-                    // Get the current item list by calling getItemList.
-                    List<clsItem> itemList = mainLogic.getItemList();
+            // Unsubscribe from the Closed event to prevent memory leaks
+            ItemsWindow.Closed -= ItemsWindow_Closed;
+        }
 
-                    // Update the itemComboBox, may have to change this implementation later on.
-                    itemComboBox.Items.Clear();
-                    foreach (clsItem item in itemList)
-                    {
-                        itemComboBox.Items.Add(item);
-                    }
+        private void ItemsWindow_Closed(object sender, EventArgs e)
+        {
+            // Get the current item list by calling getItemList.
+            List<clsItem> itemList = clsItemsLogic.getItemList();
 
-                }
-            }*/
+            // Update the itemComboBox
+            ObservableCollection<clsItem> observableItemList = new ObservableCollection<clsItem>(itemList);
+            itemComboBox.ItemsSource = observableItemList;
         }
 
         /// <summary>
@@ -118,6 +113,9 @@ namespace Group_Project
         }
 
         // Update Item Combo Box
+        /// <summary>
+        /// Updates the item combo box
+        /// </summary>
         private void updateItemComboBox()
         {
             try
@@ -136,7 +134,11 @@ namespace Group_Project
 
 
         // Invoice form Methods
-
+        /// <summary>
+        /// Adds an item to the invoice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -160,6 +162,11 @@ namespace Group_Project
             }
         }
 
+        /// <summary>
+        /// Updates the cost of the selected item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ItemComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -174,7 +181,11 @@ namespace Group_Project
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Deletes an item from the invoice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteItem_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -197,6 +208,11 @@ namespace Group_Project
 
         }
 
+        /// <summary>
+        /// Saves the invoice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveInvoice_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -226,6 +242,9 @@ namespace Group_Project
             }
         }
 
+        /// <summary>
+        /// Clears the invoice form
+        /// </summary>
         private void clearInvoiceForm()
         {
             itemCostTextBox.Text = "";
@@ -266,6 +285,9 @@ namespace Group_Project
         {
             try
             {
+                // Clear invoice form
+                clearInvoiceForm();
+
                 clsInvoice selectedInvoice = invoiceDataGrid.SelectedItem as clsInvoice;
 
                 if (selectedInvoice != null)
@@ -283,7 +305,6 @@ namespace Group_Project
 
                     itemDataGrid.ItemsSource = mainLogic.addedItems;
                     totalCostTextBlock.Text = "Total Cost: $" + selectedInvoice.theCost.ToString();
-
 
                 }
             }

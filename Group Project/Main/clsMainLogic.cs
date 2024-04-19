@@ -24,6 +24,11 @@ namespace Group_Project
         public ObservableCollection<clsItem> addedItems = new ObservableCollection<clsItem>();
 
 
+        /// <summary>
+        /// Adds an item to the list to be added to the invoice
+        /// </summary>
+        /// <param name="item"></param>
+        /// <exception cref="Exception"></exception>
         public void addItemToList(clsItem item)
         {
             try
@@ -36,6 +41,11 @@ namespace Group_Project
             }
         }
 
+        /// <summary>
+        /// Returns the total cost of the invoice
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public decimal getTotalCost()
         {
             try
@@ -54,6 +64,11 @@ namespace Group_Project
             
         }
 
+        /// <summary>
+        /// Adds an invoice to the database
+        /// </summary>
+        /// <param name="invoiceDate"></param>
+        /// <exception cref="Exception"></exception>
         public void addInvoice(DateTime invoiceDate)
         {
             try
