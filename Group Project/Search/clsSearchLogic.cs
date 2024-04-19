@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -138,17 +140,31 @@ namespace Group_Project {
             int iRet = 0;
             string tempString;
             int tempInt;
-         
+            string dateString;
+            string newString;
+
             ds = dataAccess.ExecuteSQLStatement(sSQL, ref iRet);
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++) {
                 clsInvoice temp = new clsInvoice();
                 Int32.TryParse(ds.Tables[0].Rows[i][0].ToString(), out tempInt); //invoice number
                 temp.theInvoiceNum = tempInt;
-                temp.theDate = (DateTime)ds.Tables[0].Rows[i][1];
+                //dateString = (string)ds.Tables[0].Rows[i][1];
+                //DateTime dateTime = DateTime.ParseExact(dateString, "M/d/yyyy", CultureInfo.InvariantCulture);
+                //temp.theDate = dateTime;
+                temp.theDate = (DateTime)ds.Tables[0].Rows[i][1]; //date
+                var smt = ds.Tables[0].Rows[i][1];
+                var help = ds.Tables[0].Rows[i][1].GetType();
                 Int32.TryParse(ds.Tables[0].Rows[i][2].ToString(), out tempInt); //total cost
                 temp.theCost = tempInt;
 
-                temp.theItems = getItems(temp.theInvoiceNum);
+                temp.theItems = getItems(temp.theInvoiceNum);//items
+
+                newString = "";
+                for (int j = 0; j < temp.theItems.Count; j++) {
+                    newString += temp.theItems[j].Desc;
+                    newString += "\n";
+                }
+                temp.allTheItems = newString;
                 invoices.Add(temp);
             }
 
@@ -169,21 +185,25 @@ namespace Group_Project {
             List<string> neededItems = new List<string>();
             List<clsItem> theItems = new List<clsItem>();
 
-            ds = dataAccess.ExecuteSQLStatement(sSQL, ref iRet);
+            DataSet ds = dataAccess.ExecuteSQLStatement(sSQL, ref iRet);
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++) {
                 Int32.TryParse(ds.Tables[0].Rows[i][0].ToString(), out tempInt); //invoice number from ds
                 if(tempInt == invoiceNum) {
                     neededItems.Add(ds.Tables[0].Rows[i][2].ToString()); 
                 }
             }
-
-            foreach (clsItem item in items) {
-                int i = 0;
-                if(item.ID == neededItems[i]) {
-                    theItems.Add(item);
-                    i++;
+            //A B C
+            //:D   !!!
+            while (neededItems.Count > 0) {
+                foreach (clsItem item in items) {
+                    if (item.ID == neededItems[0]) {
+                        theItems.Add(item);
+                        neededItems.Remove(item.ID);
+                        break;
+                    }
                 }
             }
+
             return theItems;
         }
     }
@@ -193,13 +213,33 @@ namespace Group_Project {
         DateTime date;
         int cost;
         List<clsItem> items;
+        string allItems;
 
+        /// <summary>
+        /// get and set invoice #
+        /// </summary>
         public int theInvoiceNum { get { return invoiceNum; } set { invoiceNum = value; } }
 
+        /// <summary>
+        /// get and set the date
+        /// </summary>
         public DateTime theDate { get { return date; } set { date = value; } }
 
+        /// <summary>
+        /// get and set the cost
+        /// </summary>
         public int theCost { get { return cost; } set { cost = value; } }
 
+        /// <summary>
+        /// get and set the string of all the item names
+        /// </summary>
+        public string allTheItems { get { return allItems; } set { allItems = value; } }
+
+        /// <summary>
+        /// get and set the list of clsItems
+        /// </summary>
         public List<clsItem> theItems { get { return items; } set { items = value; } }
+
+        
     }
 }
