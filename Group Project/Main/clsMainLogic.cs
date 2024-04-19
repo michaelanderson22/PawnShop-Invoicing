@@ -23,6 +23,11 @@ namespace Group_Project
 
         public ObservableCollection<clsItem> addedItems = new ObservableCollection<clsItem>();
 
+        /// <summary>
+        /// Stores the current invoice number for editing.
+        /// </summary>
+        public int currentInvoiceNum;
+
 
         /// <summary>
         /// Adds an item to the list to be added to the invoice
@@ -108,6 +113,67 @@ namespace Group_Project
 
             }
             
+        }
+
+        public void editInvoice(DateTime invoiceDate)
+        {
+            try
+            {
+                int retVal = 0;
+                int rowsAffected = 0;
+                int invoiceNum = this.currentInvoiceNum;
+                DataSet ds = new DataSet();
+
+
+                decimal totalCost = getTotalCost();
+
+                // Update Invoice Table
+                sql = clsMainSQL.updateInvoice(invoiceDate, invoiceNum, totalCost);
+                rowsAffected = db.ExecuteNonQuery(sql);
+
+
+                // Delete Line  Items from Invoice, before adding new ones.
+                sql = clsMainSQL.deleteLineItems(invoiceNum);
+                rowsAffected = db.ExecuteNonQuery(sql);
+
+
+                // Insert Line Item
+                for (int i = 0; i < addedItems.Count; i++)
+                {
+                    int lineItemNum = i + 1;
+
+                    sql = clsMainSQL.insertLineItem(invoiceNum, lineItemNum, addedItems[i].ID);
+                    rowsAffected = db.ExecuteNonQuery(sql);
+                }
+            }
+            catch
+            {
+                throw new Exception("Error editing invoice");
+            }
+        }
+
+        public void deleteInvoice(int invoiceNum)
+        {
+            try
+            {
+                int retVal = 0;
+                int rowsAffected = 0;
+                DataSet ds = new DataSet();
+
+                // Delete Line Items Entries
+                sql = clsMainSQL.deleteLineItems(invoiceNum);
+                rowsAffected = db.ExecuteNonQuery(sql);
+
+                // Delete Invoice Table Entry
+                sql = clsMainSQL.deleteInvoice(invoiceNum);
+                rowsAffected = db.ExecuteNonQuery(sql);
+
+                
+            }
+            catch
+            {
+                throw new Exception("Error deleting invoice");
+            }
         }
     }
 

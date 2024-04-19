@@ -22,12 +22,14 @@
             <Label Content="Invoices"></Label>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*" />
-                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="33*" />
+                    <ColumnDefinition Width="33*" />
+                    <ColumnDefinition Width="33*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Margin="0 0 5 0" Grid.Column="0" Content="Add" Click="AddInvoice_Click"></Button>
+                <Button Margin="0 0 0 0" Grid.Column="0" Content="Add" Click="AddInvoice_Click"></Button>
                 <Button Margin="4,0,0,0" Grid.Column="1" Content="Edit" Click="EditInvoice_Click" Height="20" VerticalAlignment="Top"></Button>
+                <Button Margin="4 0 0 0" Grid.Column="2" Content="Delete" Click="DeleteInvoice_Click"></Button>
             </Grid>
 
             <DataGrid Name="invoiceDataGrid" AutoGenerateColumns="False" Margin="0 0 0 0" SelectionMode="Single" SelectionChanged="InvoiceDataGrid_SelectionChanged">

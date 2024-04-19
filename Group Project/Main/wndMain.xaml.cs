@@ -195,6 +195,9 @@ namespace Group_Project
                     mainLogic.addedItems.Remove((clsItem)itemDataGrid.SelectedItem);
                     ObservableCollection<clsItem> observableItemList = new ObservableCollection<clsItem>(mainLogic.addedItems);
                     itemDataGrid.ItemsSource = observableItemList;
+
+                    totalCostTextBlock.Text = "Total Cost: $" + mainLogic.getTotalCost().ToString();
+
                 }
                 else
                 {
@@ -217,7 +220,8 @@ namespace Group_Project
         {
             try
             {
-                if (datePicker.SelectedDate.HasValue)
+                // Check if invoice number is TBD, if so, add an invoice
+                if (invoiceNumberLabel.Text == "Invoice Number: TBD" && datePicker.SelectedDate.HasValue)
                 {
                     // Add invoice
                     mainLogic.addInvoice(datePicker.SelectedDate.Value);
@@ -227,14 +231,27 @@ namespace Group_Project
 
                     MessageBox.Show("Invoice Saved");
 
-                    invoicePanel.Visibility = Visibility.Collapsed;
+                   invoicePanel.Visibility = Visibility.Collapsed;
 
-                    clearInvoiceForm();
+                   clearInvoiceForm();
                 }
-                else
+                // else, edit an invoice
+                else if (datePicker.SelectedDate.HasValue)
                 {
-                    MessageBox.Show("Please select an invoice date");
+                    mainLogic.editInvoice(datePicker.SelectedDate.Value);
+
+                    // Update invoice list
+                    updateInvoicesList();
+
+                    MessageBox.Show("Invoice Saved");
+
+                    invoicePanel.Visibility = Visibility.Collapsed;
                 }
+                else 
+                {
+                    MessageBox.Show("Please select an invoice date.");
+                }
+                
             } 
             catch (Exception ex)
             {
@@ -298,10 +315,13 @@ namespace Group_Project
                         mainLogic.addedItems.Add(item);
                     }
 
+                    mainLogic.currentInvoiceNum = selectedInvoice.theInvoiceNum;
+
                     invoicePanel.Visibility = Visibility.Visible;
                     invoiceNumberLabel.Text = "Invoice Number: " + selectedInvoice.theInvoiceNum.ToString();
 
                     datePicker.SelectedDate = selectedInvoice.theDate;
+
 
                     itemDataGrid.ItemsSource = mainLogic.addedItems;
                     totalCostTextBlock.Text = "Total Cost: $" + selectedInvoice.theCost.ToString();
@@ -313,6 +333,37 @@ namespace Group_Project
                 MessageBox.Show(ex.Message);
             }
             
+        }
+
+        /// <summary>
+        /// Deletes the selected invoice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            clsInvoice selectedInvoice = invoiceDataGrid.SelectedItem as clsInvoice;
+
+            if (selectedInvoice != null)
+            {
+                try
+                {
+                    mainLogic.deleteInvoice(selectedInvoice.theInvoiceNum);
+
+                    // Update invoice list
+                    updateInvoicesList();
+
+                    MessageBox.Show("Invoice Deleted!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an invoice to delete");
+            }
         }
 
     }
