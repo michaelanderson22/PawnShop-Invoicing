@@ -22,19 +22,21 @@
             <Label Content="Invoices"></Label>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*" />
-                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="33*" />
+                    <ColumnDefinition Width="33*" />
+                    <ColumnDefinition Width="33*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Margin="0 0 5 0" Grid.Column="0" Content="Add" Click="AddInvoice_Click"></Button>
+                <Button Margin="0 0 0 0" Grid.Column="0" Content="Add" Click="AddInvoice_Click"></Button>
                 <Button Margin="4,0,0,0" Grid.Column="1" Content="Edit" Click="EditInvoice_Click" Height="20" VerticalAlignment="Top"></Button>
+                <Button Margin="4 0 0 0" Grid.Column="2" Content="Delete" Click="DeleteInvoice_Click"></Button>
             </Grid>
 
             <DataGrid Name="invoiceDataGrid" AutoGenerateColumns="False" Margin="0 0 0 0" SelectionMode="Single" SelectionChanged="InvoiceDataGrid_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Invoice Number" Binding="{Binding theInvoiceNum}" Width="50*" />
-                    <DataGridTextColumn Header="Date" Binding="{Binding theDate}" Width="20*" />
-                    <DataGridTextColumn Header="Total Cost" Binding="{Binding theCost}" Width="30*" />
+                    <DataGridTextColumn Header="Invoice #" Binding="{Binding theInvoiceNum}" Width="35*" />
+                    <DataGridTextColumn Header="Date" Binding="{Binding theDate}" Width="35*" />
+                    <DataGridTextColumn Header="Cost" Binding="{Binding theCost}" Width="30*" />
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -54,8 +56,8 @@
             <!-- Item List -->
             <DataGrid Name="itemDataGrid" AutoGenerateColumns="False" Margin="0 20 0 0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Item" Binding="{Binding sDesc}" Width="70*" />
-                    <DataGridTextColumn Header="Cost" Binding="{Binding sCost}" Width="30*" />
+                    <DataGridTextColumn Header="Item" Binding="{Binding Desc}" Width="70*" />
+                    <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="30*" />
                     <DataGridTemplateColumn Width="Auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

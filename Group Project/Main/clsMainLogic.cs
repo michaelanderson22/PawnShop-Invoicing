@@ -23,34 +23,19 @@ namespace Group_Project
 
         public ObservableCollection<clsItem> addedItems = new ObservableCollection<clsItem>();
 
+        /// <summary>
+        /// Stores the current invoice number for editing.
+        /// </summary>
+        public int currentInvoiceNum;
+
+        private clsSearchLogic searchLogic = new clsSearchLogic();
 
 
-        /*public List<clsItem> getItemList()
-        {
-            int retVal = 0;
-
-            DataSet ds = new DataSet();
-            List<clsItem> itemList = new List<clsItem>();
-
-            sql = clsMainSQL.getItemDesc();
-            ds = db.ExecuteSQLStatement(sql, ref retVal);
-
-            if (ds != null && ds.Tables.Count > 0)
-            {
-                foreach (DataRow row in ds.Tables[0].Rows)
-                {
-                    clsItem item = new clsItem();
-                    item.itemCode = row["ItemCode"].ToString();
-                    item.itemDesc = row["ItemDesc"].ToString();
-                    item.itemCost = decimal.Parse(row["Cost"].ToString());
-
-                    itemList.Add(item);
-                }
-            }
-            return itemList;
-
-        }*/
-
+        /// <summary>
+        /// Adds an item to the list to be added to the invoice
+        /// </summary>
+        /// <param name="item"></param>
+        /// <exception cref="Exception"></exception>
         public void addItemToList(clsItem item)
         {
             try
@@ -63,6 +48,42 @@ namespace Group_Project
             }
         }
 
+        /// <summary>
+        /// Returns an invoice by its invoice number.
+        /// </summary>
+        /// <param name="invoiceNum"></param>
+        /// <returns></returns>
+        public clsInvoice getInvoiceByInvoiceNum(int invoiceNum)
+        {
+            List<clsInvoice> invoiceList = new List<clsInvoice>();
+
+            // Populate invoice list
+            invoiceList = searchLogic.getInvoices();
+            try
+            {
+                // Search invoice list for invoice number, return invoice
+                foreach (clsInvoice invoice in invoiceList)
+                {
+                    if (invoice.theInvoiceNum == invoiceNum)
+                    {
+                        return invoice;
+                    }
+                }
+                // No invoice found
+                return null;
+            }
+            catch
+            {
+                throw new Exception("Error getting invoice by invoice number");
+            }
+            
+        }
+
+        /// <summary>
+        /// Returns the total cost of the invoice
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public decimal getTotalCost()
         {
             try
@@ -81,6 +102,11 @@ namespace Group_Project
             
         }
 
+        /// <summary>
+        /// Adds an invoice to the database
+        /// </summary>
+        /// <param name="invoiceDate"></param>
+        /// <exception cref="Exception"></exception>
         public void addInvoice(DateTime invoiceDate)
         {
             try
@@ -116,10 +142,71 @@ namespace Group_Project
             }
             catch (Exception ex)
             {
-                /*throw new Exception("Error adding invoice");*/
-                throw new Exception(ex.Message);
+                throw new Exception("Error adding invoice. Please fill out all required fields.");
+
             }
             
+        }
+
+        public void editInvoice(DateTime invoiceDate)
+        {
+            try
+            {
+                int retVal = 0;
+                int rowsAffected = 0;
+                int invoiceNum = this.currentInvoiceNum;
+                DataSet ds = new DataSet();
+
+
+                decimal totalCost = getTotalCost();
+
+                // Update Invoice Table
+                sql = clsMainSQL.updateInvoice(invoiceDate, invoiceNum, totalCost);
+                rowsAffected = db.ExecuteNonQuery(sql);
+
+
+                // Delete Line  Items from Invoice, before adding new ones.
+                sql = clsMainSQL.deleteLineItems(invoiceNum);
+                rowsAffected = db.ExecuteNonQuery(sql);
+
+
+                // Insert Line Item
+                for (int i = 0; i < addedItems.Count; i++)
+                {
+                    int lineItemNum = i + 1;
+
+                    sql = clsMainSQL.insertLineItem(invoiceNum, lineItemNum, addedItems[i].ID);
+                    rowsAffected = db.ExecuteNonQuery(sql);
+                }
+            }
+            catch
+            {
+                throw new Exception("Error editing invoice");
+            }
+        }
+
+        public void deleteInvoice(int invoiceNum)
+        {
+            try
+            {
+                int retVal = 0;
+                int rowsAffected = 0;
+                DataSet ds = new DataSet();
+
+                // Delete Line Items Entries
+                sql = clsMainSQL.deleteLineItems(invoiceNum);
+                rowsAffected = db.ExecuteNonQuery(sql);
+
+                // Delete Invoice Table Entry
+                sql = clsMainSQL.deleteInvoice(invoiceNum);
+                rowsAffected = db.ExecuteNonQuery(sql);
+
+                
+            }
+            catch
+            {
+                throw new Exception("Error deleting invoice");
+            }
         }
     }
 

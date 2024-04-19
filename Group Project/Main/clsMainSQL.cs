@@ -86,5 +86,15 @@ namespace Group_Project
             return "SELECT TOP 1 InvoiceNum FROM Invoices ORDER BY InvoiceNum DESC";
         }
 
+        public static string updateInvoice(DateTime invoiceDate, int invoiceNum, decimal totalCost)
+        {
+           return "UPDATE Invoices SET InvoiceDate = #" + invoiceDate + "#, TotalCost = " + totalCost + " WHERE InvoiceNum = " + invoiceNum;
+        }
+
+        public static string deleteLineItems(int invoiceNum)
+        {
+            return "DELETE FROM LineItems WHERE InvoiceNum = " + invoiceNum; ;
+        }
+
     }
 }
