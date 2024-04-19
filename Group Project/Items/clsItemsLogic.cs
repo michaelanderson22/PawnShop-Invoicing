@@ -8,32 +8,37 @@ using System.Threading.Tasks;
 namespace Group_Project {
 	public static class clsItemsLogic {
 
+		private static clsItemsSQL itemSQL;
+
+		private static clsDataAccess data;
+
+
 		/// <summary>
 		/// Public list for app to use when it need a list of all items in the db
 		/// </summary>
 		/// <returns>List of cls Items</returns>
 		public static List<clsItem> getItemList() {
 			string sql;
-			clsDataAccess data = new clsDataAccess();
-			clsItemsSQL itemSQL = new clsItemsSQL();
-		
+			data = new clsDataAccess();
+			itemSQL = new clsItemsSQL();
+
 			try {
 
-			int retVal = 0;
-			
-			DataSet ds = new DataSet();
-			List<clsItem> itemList = new List<clsItem>();
+				int retVal = 0;
 
-			sql = itemSQL.QueryAllItemDesc();
-			ds = data.ExecuteSQLStatement(sql, ref retVal);
+				DataSet ds = new DataSet();
+				List<clsItem> itemList = new List<clsItem>();
 
-			if (ds != null && ds.Tables.Count > 0) {
-				foreach (DataRow row in ds.Tables[0].Rows) {
-					clsItem item = new clsItem(row["ItemCode"].ToString(), row["ItemDesc"].ToString(), (decimal)row["Cost"]);
-					itemList.Add(item);
+				sql = itemSQL.QueryAllItemDesc();
+				ds = data.ExecuteSQLStatement(sql, ref retVal);
+
+				if (ds != null && ds.Tables.Count > 0) {
+					foreach (DataRow row in ds.Tables[0].Rows) {
+						clsItem item = new clsItem(row["ItemCode"].ToString(), row["ItemDesc"].ToString(), (decimal)row["Cost"]);
+						itemList.Add(item);
+					}
 				}
-			}
-			return itemList;
+				return itemList;
 			}
 			catch (Exception ex) {
 
@@ -52,16 +57,27 @@ namespace Group_Project {
 			return result;
 		}
 
+		public static bool IsCodeSafeToDelete(string code) {
+			itemSQL = new clsItemsSQL();
+			string sql;
+			int numOfRows = 0;
+			foreach (clsItem item in getItemList()) {
+				sql = itemSQL.QueryInvoiceByItemCode(item.ID);
+				data.ExecuteSQLStatement(sql, ref numOfRows);
+				if (numOfRows > 0) {
+					return false;
+				}
+			}
+			return true;
+		}
+
 		public static DataSet getItemDataSet() {
 			string sql;
 			clsDataAccess data = new clsDataAccess();
 			clsItemsSQL itemSQL = new clsItemsSQL();
 			try {
-
 				int retVal = 0;
-
 				DataSet ds = new DataSet();
-				List<clsItem> itemList = new List<clsItem>();
 
 				sql = itemSQL.QueryAllItemDesc();
 				ds = data.ExecuteSQLStatement(sql, ref retVal);
@@ -74,14 +90,14 @@ namespace Group_Project {
 		}
 
 		public static void NewItem(clsItem item) {
-				
+
 		}
 
 	}
 	public class clsItem {
 		public string ID { get { return sID; } }
 		private string sID;
-		public string Desc { get { return sDesc; } }	
+		public string Desc { get { return sDesc; } }
 		private string sDesc;
 		public decimal Cost { get { return sCost; } }
 		private decimal sCost;
