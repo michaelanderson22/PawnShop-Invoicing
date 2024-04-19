@@ -96,9 +96,60 @@ namespace Group_Project
             if (result == true) // If the user closes the search window with a valid selection
             {
                 // Retrieve selected invoice information from the search window
+                int selectedInvoiceNum = SearchWindow.SelectedInvoice;
+                
+                if (selectedInvoiceNum != -1)
+                {
+                    try
+                    {
+                        editSearchedInvoice(selectedInvoiceNum);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                // Display the selected invoice number for testing.
+                /*MessageBox.Show(selectedInvoiceNum.ToString());*/
 
 
                 /*int selectedInvoiceNumber = SearchWindow.SelectedInvoice;*/
+            }
+        }
+
+        private void editSearchedInvoice(int invoiceNum)
+        {
+            try
+            {
+                // Clear invoice form
+                clearInvoiceForm();
+
+                clsInvoice selectedInvoice = mainLogic.getInvoiceByInvoiceNum(invoiceNum);
+
+                if (selectedInvoice != null)
+                {
+                    // Add items to list
+                    foreach (clsItem item in selectedInvoice.theItems)
+                    {
+                        mainLogic.addedItems.Add(item);
+                    }
+
+                    mainLogic.currentInvoiceNum = selectedInvoice.theInvoiceNum;
+
+                    invoicePanel.Visibility = Visibility.Visible;
+                    invoiceNumberLabel.Text = "Invoice Number: " + selectedInvoice.theInvoiceNum.ToString();
+
+                    datePicker.SelectedDate = selectedInvoice.theDate;
+
+
+                    itemDataGrid.ItemsSource = mainLogic.addedItems;
+                    totalCostTextBlock.Text = "Total Cost: $" + selectedInvoice.theCost.ToString();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

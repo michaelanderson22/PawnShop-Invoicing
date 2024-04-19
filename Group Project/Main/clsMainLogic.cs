@@ -28,6 +28,8 @@ namespace Group_Project
         /// </summary>
         public int currentInvoiceNum;
 
+        private clsSearchLogic searchLogic = new clsSearchLogic();
+
 
         /// <summary>
         /// Adds an item to the list to be added to the invoice
@@ -44,6 +46,37 @@ namespace Group_Project
             {
                 throw new Exception("Error adding item to list");
             }
+        }
+
+        /// <summary>
+        /// Returns an invoice by its invoice number.
+        /// </summary>
+        /// <param name="invoiceNum"></param>
+        /// <returns></returns>
+        public clsInvoice getInvoiceByInvoiceNum(int invoiceNum)
+        {
+            List<clsInvoice> invoiceList = new List<clsInvoice>();
+
+            // Populate invoice list
+            invoiceList = searchLogic.getInvoices();
+            try
+            {
+                // Search invoice list for invoice number, return invoice
+                foreach (clsInvoice invoice in invoiceList)
+                {
+                    if (invoice.theInvoiceNum == invoiceNum)
+                    {
+                        return invoice;
+                    }
+                }
+                // No invoice found
+                return null;
+            }
+            catch
+            {
+                throw new Exception("Error getting invoice by invoice number");
+            }
+            
         }
 
         /// <summary>

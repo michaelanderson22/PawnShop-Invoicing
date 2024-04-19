@@ -236,19 +236,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mitch\\.nuget\\packages\\": {}
+    "C:\\Users\\micha\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\School Files\\CS 3280\\v5\\CS3280-GroupProject\\Group Project\\Group Project.csproj",
+      "projectUniqueName": "C:\\Users\\micha\\OneDrive\\School\\Weber\\CS3280\\Projects\\Group Project\\CS3280-GroupProject\\Group Project\\Group Project.csproj",
       "projectName": "Group Project",
-      "projectPath": "F:\\School Files\\CS 3280\\v5\\CS3280-GroupProject\\Group Project\\Group Project.csproj",
-      "packagesPath": "C:\\Users\\Mitch\\.nuget\\packages\\",
-      "outputPath": "F:\\School Files\\CS 3280\\v5\\CS3280-GroupProject\\Group Project\\obj\\",
+      "projectPath": "C:\\Users\\micha\\OneDrive\\School\\Weber\\CS3280\\Projects\\Group Project\\CS3280-GroupProject\\Group Project\\Group Project.csproj",
+      "packagesPath": "C:\\Users\\micha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\micha\\OneDrive\\School\\Weber\\CS3280\\Projects\\Group Project\\CS3280-GroupProject\\Group Project\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Mitch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\micha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -268,11 +273,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -303,7 +303,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
