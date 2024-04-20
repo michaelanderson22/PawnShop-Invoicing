@@ -11,33 +11,45 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
+            <Style TargetType="Grid" x:Key="Window">
+                <Setter Property="Background" Value="#D6D6D6" />
+            </Style>
             <Style TargetType="Label" x:Key="WarningLabel">
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="Foreground" Value="Red"/>
+                <Setter Property="Background" Value="#D6D6D6"/>
             </Style>
             <Style TargetType="Label" x:Key="Centering">
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Background" Value="#D6D6D6"/>
             </Style>
             <Style TargetType="Control" x:Key="Top">
                 <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Background" Value="#D6D6D6"/>
             </Style>
             <Style TargetType="Control" x:Key="Center">
                 <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Background" Value="#D6D6D6"/>
             </Style>
             <Style TargetType="Control" x:Key="Bottom">
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
+                <Setter Property="Background" Value="#D6D6D6"/>
             </Style>
-            <Style TargetType="Control" x:Key="HorVerCenter">
+            <Style TargetType="Control" x:Key="Button">
+                <Setter Property="FocusVisualStyle" Value="{DynamicResource NuclearButtonFocusVisual}" />
+                <Setter Property="Background" Value="{DynamicResource NormalBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
+                <Setter Property="Template" Value="{DynamicResource ButtonTemplate}" />
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="Padding" Value="3"/>
             </Style>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Style="{StaticResource Window}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3*"/>
@@ -90,7 +102,7 @@
         <!-- Item Grid -->
         <DataGrid x:Name="ItemGrid" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ItemGrid_SelectionChanged"/>
         <!-- Submit Button -->
-        <Button x:Name="SubmitButton" IsEnabled="False" Grid.Row="3" Grid.Column="3" Content="SUBMIT" Style="{StaticResource HorVerCenter}" Click="SubmitButton_Click"/>
+        <Button x:Name="SubmitButton" IsEnabled="False" Grid.Row="3" Grid.Column="3" Content="SUBMIT" Style="{StaticResource Button}" Click="SubmitButton_Click"/>
         <!-- Warning Label -->
         <Label x:Name="WarningLabel" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Content="Warning" Style="{StaticResource WarningLabel}" />
     </Grid>

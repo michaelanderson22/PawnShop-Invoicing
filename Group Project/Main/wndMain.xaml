@@ -65,7 +65,7 @@
                 <Button Margin="2" Grid.Column="2" Content="Delete" Click="DeleteInvoice_Click"></Button>
             </Grid>
 
-            <DataGrid Name="invoiceDataGrid" AutoGenerateColumns="False" Margin="0 0 0 0" SelectionMode="Single" SelectionChanged="InvoiceDataGrid_SelectionChanged">
+            <DataGrid Name="invoiceDataGrid" AutoGenerateColumns="False" Margin="0 0 0 0" SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Invoice #" Binding="{Binding theInvoiceNum}" Width="35*" />
                     <DataGridTextColumn Header="Date" Binding="{Binding theDate}" Width="35*" />
