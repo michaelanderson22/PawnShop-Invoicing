@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Group Project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< Updated upstream
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+25b5f18b3338856160b88234250c33add487f8cc")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+676ec02138c42a8552383f620b4b19286bfc2026")]
+>>>>>>> Stashed changes
 [assembly: System.Reflection.AssemblyProductAttribute("Group Project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Group Project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
