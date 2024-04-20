@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,6 +57,7 @@ namespace Group_Project {
 		}
 		RadioButtons eRadioButtons;
 		#endregion
+		#region Constructor
 
 		/// <summary>
 		/// Constructor, runs when window is initialized
@@ -72,24 +74,30 @@ namespace Group_Project {
 				eRadioButtons = RadioButtons.None;
 				RefreshItemsGrid();
 			}
-			catch (Exception) {
-
-				throw;
+			catch (Exception ex) {
+				throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." +
+				   MethodInfo.GetCurrentMethod().Name + "->" + ex.Message);
 			}
 		}
+		#endregion
+
+		#region Grid
+
 		/// <summary>
 		/// This method is called when the ItemGrid needs to have its DataSet Refreshed
 		/// </summary>
 		private void RefreshItemsGrid() {
 			try {
 				ItemGrid.ItemsSource = new DataView(clsItemsLogic.getItemDataSet().Tables[0]);
-				//				SubmitButton.IsEnabled = false;
 			}
 			catch (Exception ex) {
 				throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." +
 								   MethodInfo.GetCurrentMethod().Name + "->" + ex.Message);
 			}
 		}
+		#endregion
+		#region ButtonsAndClicks
+
 		/// <summary>
 		/// Method runs when Submit button is clicked.
 		/// </summary>
@@ -98,13 +106,13 @@ namespace Group_Project {
 		/// <exception cref="Exception">throws exception</exception>
 		private void SubmitButton_Click(object sender, RoutedEventArgs e) {
 			try {
-				Int32.TryParse(costTextBox.Text, out cost);
+				bool haveCost = Int32.TryParse(costTextBox.Text, out cost);
 				desc = descTextBox.Text;
 				itemCode = codeTextBox.Text;
 				if (Add.IsChecked == true) {
-					if (clsItemsLogic.IsCodeUnique(itemCode) && codeTextBox.Text != "" && costTextBox.Text != "" && descTextBox.Text != "") {
-						sql = clsItemsSQL.InsertNewItem(desc, itemCode, cost);
-						data.ExecuteNonQuery(sql);
+					if (clsItemsLogic.IsCodeUnique(itemCode) && itemCode != "" && haveCost && desc != "") {
+						clsItem temp = new clsItem(itemCode, desc, cost);
+						clsItemsLogic.AddItem(temp);
 					}
 					else {
 						WarningLabel.Content = "Check Item to Add, must have unique Code and all values filled.";
@@ -112,27 +120,32 @@ namespace Group_Project {
 						return;
 					}
 				}
-				else if (Edit.IsChecked == true && !clsItemsLogic.IsCodeUnique(itemCode)) {
-					if (codeTextBox.Text != "" && costTextBox.Text != "" && descTextBox.Text != "") {
-						sql = clsItemsSQL.UpdateItemDescAndCost(desc, cost, itemCode);
-						data.ExecuteNonQuery(sql);
+				else if (Edit.IsChecked == true) {
+					if (!clsItemsLogic.IsCodeUnique(itemCode)) {
+						if (itemCode != "" && haveCost && desc != "") {
+							clsItem temp = new clsItem(itemCode, desc, cost);
+							clsItemsLogic.EditItem(temp);
+						}
+						else {
+							WarningLabel.Content = "Please fill all fields.";
+						}
 					}
-					else {
-						return;
+					else { 
+						WarningLabel.Content = "Please enter valid item for edit.";
 					}
 				}
 				else if (Delete.IsChecked == true && !clsItemsLogic.IsCodeUnique(itemCode)) {
-					if (codeTextBox.Text != "") {
+					if (itemCode != "") {
 						if (clsItemsLogic.IsCodeSafeToDelete(itemCode)) {
-							sql = clsItemsSQL.DeleteFromItemDesc(itemCode);
-							data.ExecuteNonQuery(sql);
+							clsItemsLogic.DeleteItem(itemCode);
 						}
 						else {
 							WarningLabel.Content = "Can Not Delete Item, Exists in an invoice!";
+							return;
 						}
 					}
 					else {
-						return;
+						WarningLabel.Content = "Please enter item to delete.";
 					}
 				}
 				else {
@@ -144,8 +157,7 @@ namespace Group_Project {
 				Delete.IsChecked = Edit.IsChecked = Add.IsChecked = false;
 			}
 			catch (Exception ex) {
-				throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." +
-								   MethodInfo.GetCurrentMethod().Name + "->" + ex.Message);
+				HandleError(MethodInfo.GetCurrentMethod().DeclaringType.Name, MethodInfo.GetCurrentMethod().Name, ex.Message);
 			}
 		}
 		/// <summary>
@@ -163,10 +175,12 @@ namespace Group_Project {
 				}
 			}
 			catch (Exception ex) {
-				throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." +
-								   MethodInfo.GetCurrentMethod().Name + "->" + ex.Message);
+				HandleError(MethodInfo.GetCurrentMethod().DeclaringType.Name, MethodInfo.GetCurrentMethod().Name, ex.Message);
 			}
 		}
+		#endregion
+		#region inputs
+
 		/// <summary>
 		/// This meethod runs when the CodeTextBox has a keydown event
 		/// </summary>
@@ -176,11 +190,9 @@ namespace Group_Project {
 		private void CodeTextBoxKeyPress(object sender, KeyEventArgs e) {
 			try {
 				CheckInput(false, e);
-				// toggle visibility if radio is checked and correct t4ext boxes are filled
 			}
 			catch (Exception ex) {
-				throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." +
-								   MethodInfo.GetCurrentMethod().Name + "->" + ex.Message);
+				HandleError(MethodInfo.GetCurrentMethod().DeclaringType.Name, MethodInfo.GetCurrentMethod().Name, ex.Message);
 			}
 		}
 		/// <summary>
@@ -192,11 +204,9 @@ namespace Group_Project {
 		private void CostTextKeyPress(object sender, KeyEventArgs e) {
 			try {
 				CheckInput(true, e);
-				// toggle visibility if radio is checked and correct t4ext boxes are filled
 			}
 			catch (Exception ex) {
-				throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." +
-								   MethodInfo.GetCurrentMethod().Name + "->" + ex.Message);
+				HandleError(MethodInfo.GetCurrentMethod().DeclaringType.Name, MethodInfo.GetCurrentMethod().Name, ex.Message);
 			}
 		}
 		/// <summary>
@@ -208,11 +218,9 @@ namespace Group_Project {
 		private void DescTextBoxKeyPress(object sender, KeyEventArgs e) {
 			try {
 				CheckInput(false, e);
-				// toggle visibility if radio is checked and correct t4ext boxes are filled
 			}
 			catch (Exception ex) {
-				throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." +
-								   MethodInfo.GetCurrentMethod().Name + "->" + ex.Message);
+				HandleError(MethodInfo.GetCurrentMethod().DeclaringType.Name, MethodInfo.GetCurrentMethod().Name, ex.Message);
 			}
 		}
 		/// <summary>
@@ -250,15 +258,21 @@ namespace Group_Project {
 						e.Handled = true;
 					}
 				}
+				ToggleSubmitEnabled(eRadioButtons);
 			}
-			catch (Exception) {
-
-				throw;
+			catch (Exception ex) {
+				throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." +
+				   MethodInfo.GetCurrentMethod().Name + "->" + ex.Message);
 			}
 		}
+		#endregion
+		#region ControlEnabling
+
 		/// <summary>
 		/// This method will check for radio buttons and text fields content, enabling Submit button if appropriate
 		/// </summary>
+		/// <param name="selectedRdoBtn">Enum for tracking selected radio button</param>
+		/// <exception cref="Exception">Throws exception if error</exception>
 		public void ToggleSubmitEnabled(Enum selectedRdoBtn) {
 			try {
 				if (eRadioButtons.Equals(RadioButtons.Add)) {
@@ -281,9 +295,9 @@ namespace Group_Project {
 					return;
 				}
 			}
-			catch (Exception) {
-
-				throw;
+			catch (Exception ex) {
+				throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." +
+				   MethodInfo.GetCurrentMethod().Name + "->" + ex.Message);
 			}
 		}
 		/// <summary>
@@ -308,10 +322,27 @@ namespace Group_Project {
 				}
 				ToggleSubmitEnabled(eRadioButtons);
 			}
-			catch (Exception) {
-
-				throw;
+			catch (Exception ex) {
+				throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." +
+				   MethodInfo.GetCurrentMethod().Name + "->" + ex.Message);
 			}
 		}
+		#endregion
+		#region ErrorHandling
+		/// <summary>
+		/// This method will handle all top level Errors
+		/// </summary>
+		/// <param name="sClass"></param>
+		/// <param name="sMethod"></param>
+		/// <param name="sMessage"></param>
+		private void HandleError(string sClass, string sMethod, string sMessage) {
+			try {
+				MessageBox.Show(sClass + "." + sMethod + "." + sMessage);
+			}
+			catch (Exception ex) {
+				System.IO.File.AppendAllText(".//Error.txt", Environment.NewLine + "HandleError Exception: " + ex.Message);
+			}
+		}
+		#endregion
 	}
 }
