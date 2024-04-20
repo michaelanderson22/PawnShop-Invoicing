@@ -71,6 +71,11 @@ namespace Group_Project
             ItemsWindow.Closed -= ItemsWindow_Closed;
         }
 
+        /// <summary>
+        /// Runs when the item table window is closed, updates the itemComboBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ItemsWindow_Closed(object sender, EventArgs e)
         {
             // Get the current item list by calling getItemList.
@@ -117,6 +122,10 @@ namespace Group_Project
             }
         }
 
+        /// <summary>
+        /// Opens the selected invoice to be edited.
+        /// </summary>
+        /// <param name="invoiceNum"></param>
         private void editSearchedInvoice(int invoiceNum)
         {
             try
@@ -328,10 +337,6 @@ namespace Group_Project
 
         // Invoice List Methods
 
-        private void InvoiceDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
         /// <summary>
         /// runs when the Add Invoice button is clicked, shows the invoice form to be filled out.
         /// </summary>

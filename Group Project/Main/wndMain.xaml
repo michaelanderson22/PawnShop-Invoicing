@@ -6,14 +6,47 @@
         xmlns:local="clr-namespace:Group_Project"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="wndMain" Height="520" Width="680">
+        Title="MAM Pawn Shop" Height="520" Width="680">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="Label" x:Key="WarningLabel">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="Red"/>
+            </Style>
+            <Style TargetType="Label" x:Key="Centering">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="Control" x:Key="Top">
+                <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style>
+            <Style TargetType="Control" x:Key="Center">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="Control" x:Key="Bottom">
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
+            </Style>
+            <Style TargetType="Control" x:Key="HorVerCenter">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="3"/>
+            </Style>
+        </ResourceDictionary>
+        
+        
+    </Window.Resources>
     <Grid>
         <!-- Menu -->
         <Menu>
-            <MenuItem Header="_Items">
+            <MenuItem Header="_Items" VerticalAlignment="Top">
                 <MenuItem Header="_Update Item Table" Click="UpdateItemTable_Click"/>
             </MenuItem>
-            <MenuItem Header="_Search">
+            <MenuItem Header="_Search" VerticalAlignment="Top">
                 <MenuItem Header="Invoices" Click="Search_Click"></MenuItem>
             </MenuItem>
         </Menu>
@@ -27,9 +60,9 @@
                     <ColumnDefinition Width="33*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Margin="0 0 0 0" Grid.Column="0" Content="Add" Click="AddInvoice_Click"></Button>
-                <Button Margin="4,0,0,0" Grid.Column="1" Content="Edit" Click="EditInvoice_Click" Height="20" VerticalAlignment="Top"></Button>
-                <Button Margin="4 0 0 0" Grid.Column="2" Content="Delete" Click="DeleteInvoice_Click"></Button>
+                <Button Margin="2" Grid.Column="0" Content="Add" Click="AddInvoice_Click"></Button>
+                <Button Margin="2" Grid.Column="1" Content="Edit" Click="EditInvoice_Click" Height="20"></Button>
+                <Button Margin="2" Grid.Column="2" Content="Delete" Click="DeleteInvoice_Click"></Button>
             </Grid>
 
             <DataGrid Name="invoiceDataGrid" AutoGenerateColumns="False" Margin="0 0 0 0" SelectionMode="Single" SelectionChanged="InvoiceDataGrid_SelectionChanged">
