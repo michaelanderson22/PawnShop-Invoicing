@@ -7,29 +7,35 @@
         mc:Ignorable="d"
         Title="Manage Items" Height="450" Width="800">
     <Window.Resources>
-        <Style TargetType="Label" x:Key="WarningLabel">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="Red"/>
-        </Style>
-        <Style TargetType="Label" x:Key="Centering">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-        </Style>
-        <Style TargetType="Control" x:Key="Top">
-            <Setter Property="VerticalAlignment" Value="Top"/>
-        </Style>
-        <Style TargetType="Control" x:Key="Center">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
-        <Style TargetType="Control" x:Key="Bottom">
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-        </Style>
-        <Style TargetType="Control" x:Key="HorVerCenter">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="3"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="Label" x:Key="WarningLabel">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="Red"/>
+            </Style>
+            <Style TargetType="Label" x:Key="Centering">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="Control" x:Key="Top">
+                <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style>
+            <Style TargetType="Control" x:Key="Center">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="Control" x:Key="Bottom">
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
+            </Style>
+            <Style TargetType="Control" x:Key="HorVerCenter">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="3"/>
+            </Style>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

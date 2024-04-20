@@ -148,6 +148,11 @@ namespace Group_Project
             
         }
 
+        /// <summary>
+        /// Edits an invoice
+        /// </summary>
+        /// <param name="invoiceDate"></param>
+        /// <exception cref="Exception"></exception>
         public void editInvoice(DateTime invoiceDate)
         {
             try
@@ -185,6 +190,12 @@ namespace Group_Project
             }
         }
 
+        
+        /// <summary>
+        /// Deletes an invoice
+        /// </summary>
+        /// <param name="invoiceNum"></param>
+        /// <exception cref="Exception"></exception>
         public void deleteInvoice(int invoiceNum)
         {
             try

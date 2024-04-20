@@ -81,16 +81,32 @@ namespace Group_Project
             return "DELETE FROM Invoices WHERE InvoiceNum = " + invoiceNum;
         }
 
+        /// <summary>
+        /// Returns the SQL query to get the most recent invoice number
+        /// </summary>
+        /// <returns></returns>
         public static string getMostRecentInvoiceNumber()
         {
             return "SELECT TOP 1 InvoiceNum FROM Invoices ORDER BY InvoiceNum DESC";
         }
 
+        /// <summary>
+        /// Returns the SQL query to update an invoice
+        /// </summary>
+        /// <param name="invoiceDate"></param>
+        /// <param name="invoiceNum"></param>
+        /// <param name="totalCost"></param>
+        /// <returns></returns>
         public static string updateInvoice(DateTime invoiceDate, int invoiceNum, decimal totalCost)
         {
            return "UPDATE Invoices SET InvoiceDate = #" + invoiceDate + "#, TotalCost = " + totalCost + " WHERE InvoiceNum = " + invoiceNum;
         }
 
+        /// <summary>
+        /// Returns the SQL query to delete line items from an invoice
+        /// </summary>
+        /// <param name="invoiceNum"></param>
+        /// <returns></returns>
         public static string deleteLineItems(int invoiceNum)
         {
             return "DELETE FROM LineItems WHERE InvoiceNum = " + invoiceNum; ;
