@@ -219,5 +219,16 @@ namespace Group_Project {
 					MethodInfo.GetCurrentMethod().Name + "->" + ex.Message);
 			}
 		}
-	}
+
+        /// <summary>
+		/// This method overrides the ToString method so the obj can be displayed
+		/// </summary>
+		/// <returns></returns>
+        public override string ToString()
+        {
+            return sDesc;
+        }
+        // this class provide items that can be listed for use my data grids in various windows
+
+    }
 }

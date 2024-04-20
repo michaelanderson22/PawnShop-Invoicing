@@ -60,30 +60,25 @@ namespace Group_Project
         private void UpdateItemTable_Click(object sender, RoutedEventArgs e)
         {
             wndItems ItemsWindow = new wndItems();
-            ItemsWindow.Show();
 
-            /*// Use ShowDialog to open the item table window and get the listUpdated flag.
-            // Will uncomment when item table window is implemented.
+            // Subscribe to the Closed event of ItemsWindow
+            ItemsWindow.Closed += ItemsWindow_Closed;
+
+            // Use ShowDialog to open the item table window
             bool? result = ItemsWindow.ShowDialog();
 
-            if (result == true) // If the user closes the item table window
-            {
-                // Retrieve listUpdated flag from the item table window
-                bool listUpdated = ItemsWindow.listUpdated;
-                if (listUpdated == true)
-                {
-                    // Get the current item list by calling getItemList.
-                    List<clsItem> itemList = mainLogic.getItemList();
+            // Unsubscribe from the Closed event to prevent memory leaks
+            ItemsWindow.Closed -= ItemsWindow_Closed;
+        }
 
-                    // Update the itemComboBox, may have to change this implementation later on.
-                    itemComboBox.Items.Clear();
-                    foreach (clsItem item in itemList)
-                    {
-                        itemComboBox.Items.Add(item);
-                    }
+        private void ItemsWindow_Closed(object sender, EventArgs e)
+        {
+            // Get the current item list by calling getItemList.
+            List<clsItem> itemList = clsItemsLogic.getItemList();
 
-                }
-            }*/
+            // Update the itemComboBox
+            ObservableCollection<clsItem> observableItemList = new ObservableCollection<clsItem>(itemList);
+            itemComboBox.ItemsSource = observableItemList;
         }
 
         /// <summary>
@@ -101,9 +96,60 @@ namespace Group_Project
             if (result == true) // If the user closes the search window with a valid selection
             {
                 // Retrieve selected invoice information from the search window
+                int selectedInvoiceNum = SearchWindow.SelectedInvoice;
+                
+                if (selectedInvoiceNum != -1)
+                {
+                    try
+                    {
+                        editSearchedInvoice(selectedInvoiceNum);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                // Display the selected invoice number for testing.
+                /*MessageBox.Show(selectedInvoiceNum.ToString());*/
 
 
                 /*int selectedInvoiceNumber = SearchWindow.SelectedInvoice;*/
+            }
+        }
+
+        private void editSearchedInvoice(int invoiceNum)
+        {
+            try
+            {
+                // Clear invoice form
+                clearInvoiceForm();
+
+                clsInvoice selectedInvoice = mainLogic.getInvoiceByInvoiceNum(invoiceNum);
+
+                if (selectedInvoice != null)
+                {
+                    // Add items to list
+                    foreach (clsItem item in selectedInvoice.theItems)
+                    {
+                        mainLogic.addedItems.Add(item);
+                    }
+
+                    mainLogic.currentInvoiceNum = selectedInvoice.theInvoiceNum;
+
+                    invoicePanel.Visibility = Visibility.Visible;
+                    invoiceNumberLabel.Text = "Invoice Number: " + selectedInvoice.theInvoiceNum.ToString();
+
+                    datePicker.SelectedDate = selectedInvoice.theDate;
+
+
+                    itemDataGrid.ItemsSource = mainLogic.addedItems;
+                    totalCostTextBlock.Text = "Total Cost: $" + selectedInvoice.theCost.ToString();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -118,6 +164,9 @@ namespace Group_Project
         }
 
         // Update Item Combo Box
+        /// <summary>
+        /// Updates the item combo box
+        /// </summary>
         private void updateItemComboBox()
         {
             try
@@ -136,7 +185,11 @@ namespace Group_Project
 
 
         // Invoice form Methods
-
+        /// <summary>
+        /// Adds an item to the invoice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -160,6 +213,11 @@ namespace Group_Project
             }
         }
 
+        /// <summary>
+        /// Updates the cost of the selected item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ItemComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -174,7 +232,11 @@ namespace Group_Project
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Deletes an item from the invoice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteItem_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -184,6 +246,9 @@ namespace Group_Project
                     mainLogic.addedItems.Remove((clsItem)itemDataGrid.SelectedItem);
                     ObservableCollection<clsItem> observableItemList = new ObservableCollection<clsItem>(mainLogic.addedItems);
                     itemDataGrid.ItemsSource = observableItemList;
+
+                    totalCostTextBlock.Text = "Total Cost: $" + mainLogic.getTotalCost().ToString();
+
                 }
                 else
                 {
@@ -197,22 +262,47 @@ namespace Group_Project
 
         }
 
+        /// <summary>
+        /// Saves the invoice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveInvoice_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                // Add invoice
-                mainLogic.addInvoice(datePicker.SelectedDate.Value);
+                // Check if invoice number is TBD, if so, add an invoice
+                if (invoiceNumberLabel.Text == "Invoice Number: TBD" && datePicker.SelectedDate.HasValue)
+                {
+                    // Add invoice
+                    mainLogic.addInvoice(datePicker.SelectedDate.Value);
 
-                // Update invoice list
-                updateInvoicesList();
+                    // Update invoice list
+                    updateInvoicesList();
 
-                MessageBox.Show("Invoice Saved");
+                    MessageBox.Show("Invoice Saved");
 
-                invoicePanel.Visibility = Visibility.Collapsed;
+                   invoicePanel.Visibility = Visibility.Collapsed;
 
-                clearInvoiceForm();
+                   clearInvoiceForm();
+                }
+                // else, edit an invoice
+                else if (datePicker.SelectedDate.HasValue)
+                {
+                    mainLogic.editInvoice(datePicker.SelectedDate.Value);
 
+                    // Update invoice list
+                    updateInvoicesList();
+
+                    MessageBox.Show("Invoice Saved");
+
+                    invoicePanel.Visibility = Visibility.Collapsed;
+                }
+                else 
+                {
+                    MessageBox.Show("Please select an invoice date.");
+                }
+                
             } 
             catch (Exception ex)
             {
@@ -220,6 +310,9 @@ namespace Group_Project
             }
         }
 
+        /// <summary>
+        /// Clears the invoice form
+        /// </summary>
         private void clearInvoiceForm()
         {
             itemCostTextBox.Text = "";
@@ -260,6 +353,9 @@ namespace Group_Project
         {
             try
             {
+                // Clear invoice form
+                clearInvoiceForm();
+
                 clsInvoice selectedInvoice = invoiceDataGrid.SelectedItem as clsInvoice;
 
                 if (selectedInvoice != null)
@@ -270,14 +366,16 @@ namespace Group_Project
                         mainLogic.addedItems.Add(item);
                     }
 
+                    mainLogic.currentInvoiceNum = selectedInvoice.theInvoiceNum;
+
                     invoicePanel.Visibility = Visibility.Visible;
                     invoiceNumberLabel.Text = "Invoice Number: " + selectedInvoice.theInvoiceNum.ToString();
 
                     datePicker.SelectedDate = selectedInvoice.theDate;
 
+
                     itemDataGrid.ItemsSource = mainLogic.addedItems;
                     totalCostTextBlock.Text = "Total Cost: $" + selectedInvoice.theCost.ToString();
-
 
                 }
             }
@@ -286,6 +384,37 @@ namespace Group_Project
                 MessageBox.Show(ex.Message);
             }
             
+        }
+
+        /// <summary>
+        /// Deletes the selected invoice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            clsInvoice selectedInvoice = invoiceDataGrid.SelectedItem as clsInvoice;
+
+            if (selectedInvoice != null)
+            {
+                try
+                {
+                    mainLogic.deleteInvoice(selectedInvoice.theInvoiceNum);
+
+                    // Update invoice list
+                    updateInvoicesList();
+
+                    MessageBox.Show("Invoice Deleted!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an invoice to delete");
+            }
         }
 
     }

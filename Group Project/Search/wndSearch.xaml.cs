@@ -25,7 +25,7 @@ namespace Group_Project {
         /// <summary>
         /// integer value of the selected invoice ID (if any) - used to communicate with the main window
         /// </summary>
-        int SelectedInvoice; //this is how to communicate to main window 
+        public int SelectedInvoice; //this is how to communicate to main window 
         /// <summary>
         /// static variable for the selected cost
         /// </summary>
@@ -79,9 +79,11 @@ namespace Group_Project {
         /// <exception cref="Exception"></exception>
         private void btnSelect_Click(object sender, RoutedEventArgs e) {
             if (dgDataGrid.SelectedItem != null) {
-                int value;
-                Int32.TryParse(dgDataGrid.SelectedItem.ToString(), out value);
-                SelectedInvoice = value; //need to parse?
+                clsInvoice invoice = dgDataGrid.SelectedItem as clsInvoice;
+                SelectedInvoice = invoice.theInvoiceNum; //need to parse?
+
+                // Addition by Michael, sets dialog result to true so that the main window can get the selected invoice.
+                DialogResult = true;
             } else { SelectedInvoice = -1; } //set SelectedInvoice to -1 if nothing is selected
             this.Close();
         }
